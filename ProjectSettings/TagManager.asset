@@ -3,16 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-
-=======
-  tags:
-  - Paparazzi
->>>>>>> 482bae1d6af9bab6e526e350910149d661dc3dec
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Paparazzi
+  - 
   - Water
   - UI
   - 
@@ -44,15 +40,6 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: background
-    uniqueID: 2799164879
-    locked: 0
-  - name: foreground
-    uniqueID: 2258274653
-    locked: 0
-  - name: objects
-    uniqueID: 2895711969
     locked: 0
   m_RenderingLayers:
   - Default
