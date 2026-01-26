@@ -1,0 +1,779 @@
+fileFormatVersion: 2
+guid: 16fe95d0b8cafa549958f9976f5d05f6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6809208775855922426
+    second: girlAttack_0
+  - first:
+      213: -4476417130642313554
+    second: girlAttack_1
+  - first:
+      213: -3256980359465308919
+    second: girlAttack_2
+  - first:
+      213: -7180091656320138848
+    second: girlAttack_3
+  - first:
+      213: 2082280964143000582
+    second: girlAttack_4
+  - first:
+      213: 6368776411099267064
+    second: girlAttack_5
+  - first:
+      213: 6590145999958975753
+    second: girlAttack_6
+  - first:
+      213: 2612924183589782893
+    second: girlAttack_7
+  - first:
+      213: 8409405699244209815
+    second: girlAttack_8
+  - first:
+      213: 5309833460806566399
+    second: girlAttack_9
+  - first:
+      213: -2776567824954778869
+    second: girlAttack_10
+  - first:
+      213: 6597529858939719526
+    second: girlAttack_11
+  - first:
+      213: 8957747933362344678
+    second: girlAttack_12
+  - first:
+      213: 5863603333824719027
+    second: girlAttack_13
+  - first:
+      213: -818984424012155032
+    second: girlAttack_14
+  - first:
+      213: -4352552659317263115
+    second: girlAttack_15
+  - first:
+      213: -993414365785240390
+    second: girlAttack_16
+  - first:
+      213: -2202012779771848067
+    second: girlAttack_17
+  - first:
+      213: 2306198677491986302
+    second: girlAttack_18
+  - first:
+      213: -3097013139022181947
+    second: girlAttack_19
+  - first:
+      213: -844219725156702179
+    second: girlAttack_20
+  - first:
+      213: 5115477291936229347
+    second: girlAttack_21
+  - first:
+      213: 6143452584314714717
+    second: girlAttack_22
+  - first:
+      213: -559825726332792337
+    second: girlAttack_23
+  - first:
+      213: -2754280180985582054
+    second: girlAttack_24
+  - first:
+      213: 5848204330267284585
+    second: girlAttack_25
+  - first:
+      213: -2492263902131106530
+    second: girlAttack_26
+  - first:
+      213: -2304987852750734706
+    second: girlAttack_27
+  - first:
+      213: 8691465027689583097
+    second: girlAttack_28
+  - first:
+      213: -3717771089780326235
+    second: girlAttack_29
+  - first:
+      213: 1402834507508502217
+    second: girlAttack_30
+  - first:
+      213: 4914150921040305470
+    second: girlAttack_31
+  - first:
+      213: 2721825815867555440
+    second: girlAttack_32
+  - first:
+      213: 9146903418448610795
+    second: girlAttack_33
+  - first:
+      213: 1452025981343297914
+    second: girlAttack_34
+  - first:
+      213: -2773705119833144233
+    second: girlAttack_35
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: girlAttack_0
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 76
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 603a2a1f1b4d081a0800000000000000
+      internalID: -6809208775855922426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 76
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eae6795365290e1c0800000000000000
+      internalID: -4476417130642313554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_2
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 76
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90d65a98e91ecc2d0800000000000000
+      internalID: -3256980359465308919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_3
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 76
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a1ca4a2ea03b5c90800000000000000
+      internalID: -7180091656320138848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 75
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60c2d46218fb5ec10800000000000000
+      internalID: 2082280964143000582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_5
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 76
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ff75751760726850800000000000000
+      internalID: 6368776411099267064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_6
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 56
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9052481fed6e47b50800000000000000
+      internalID: 6590145999958975753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_7
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 56
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6585eb73b8f24420800000000000000
+      internalID: 2612924183589782893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_8
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 56
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 796b893bde534b470800000000000000
+      internalID: 8409405699244209815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_9
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 56
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff1cbdf566150b940800000000000000
+      internalID: 5309833460806566399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_10
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 56
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0b9aca2646a779d0800000000000000
+      internalID: -2776567824954778869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_11
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 56
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f822593722f8b50800000000000000
+      internalID: 6597529858939719526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_12
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 37
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e25d830940505c70800000000000000
+      internalID: 8957747933362344678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_13
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 37
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b82b685a24bf5150800000000000000
+      internalID: 5863603333824719027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_14
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 37
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8677d2a610262a4f0800000000000000
+      internalID: -818984424012155032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_15
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 37
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f4763bca60a893c0800000000000000
+      internalID: -4352552659317263115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_16
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 37
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abcc99cc5eea632f0800000000000000
+      internalID: -993414365785240390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_17
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 37
+        width: 10
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7a14d62b01e071e0800000000000000
+      internalID: -2202012779771848067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_18
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 15
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7fa2697a73410020800000000000000
+      internalID: 2306198677491986302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_19
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 15
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c98ddf65f23505d0800000000000000
+      internalID: -3097013139022181947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_20
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 15
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1828a102aab844f0800000000000000
+      internalID: -844219725156702179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_21
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 15
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e7af6a7e73ddf640800000000000000
+      internalID: 5115477291936229347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_22
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 15
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5ab886739de14550800000000000000
+      internalID: 6143452584314714717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: girlAttack_23
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 15
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe11fcdc7791b38f0800000000000000
+      internalID: -559825726332792337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c954267fb993c1748ace657c7f37f18c
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":16.0,"y":16.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      girlAttack_0: -6809208775855922426
+      girlAttack_1: -4476417130642313554
+      girlAttack_10: -2776567824954778869
+      girlAttack_11: 6597529858939719526
+      girlAttack_12: 8957747933362344678
+      girlAttack_13: 5863603333824719027
+      girlAttack_14: -818984424012155032
+      girlAttack_15: -4352552659317263115
+      girlAttack_16: -993414365785240390
+      girlAttack_17: -2202012779771848067
+      girlAttack_18: 2306198677491986302
+      girlAttack_19: -3097013139022181947
+      girlAttack_2: -3256980359465308919
+      girlAttack_20: -844219725156702179
+      girlAttack_21: 5115477291936229347
+      girlAttack_22: 6143452584314714717
+      girlAttack_23: -559825726332792337
+      girlAttack_3: -7180091656320138848
+      girlAttack_4: 2082280964143000582
+      girlAttack_5: 6368776411099267064
+      girlAttack_6: 6590145999958975753
+      girlAttack_7: 2612924183589782893
+      girlAttack_8: 8409405699244209815
+      girlAttack_9: 5309833460806566399
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
