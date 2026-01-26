@@ -3,12 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+
+=======
+  tags:
+  - Paparazzi
+>>>>>>> 482bae1d6af9bab6e526e350910149d661dc3dec
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Paparazzi
   - Water
   - UI
   - 
