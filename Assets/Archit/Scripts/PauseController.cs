@@ -1,16 +1,21 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PauseController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static PauseController instance;
+    public PlayerInput playerInput;
+    private void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Pause()
     {
-        
+        playerInput.SwitchCurrentActionMap("UI");
+    }
+    public void UnPause()
+    {
+        playerInput.SwitchCurrentActionMap("Player");
     }
 }

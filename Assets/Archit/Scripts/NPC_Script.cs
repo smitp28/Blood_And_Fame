@@ -38,6 +38,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
     }
     public void StartDialogue()
     {
+        PauseController.instance.Pause(); 
         closeButton.interactable = false;
         isDialogueActive = true;
         dialogueIndex = 0;
@@ -55,6 +56,11 @@ public class NPC_Script : MonoBehaviour, IInteractable
         {
             StopAllCoroutines();
             dialogueTextBox.SetText(dialogueData.dialogueLines[dialogueIndex]);
+            isTyping = false;
+            if (dialogueData.dialogueLines.Length <= dialogueIndex + 1)
+            {
+                closeButton.interactable = true;
+            }
         }
         else if(++dialogueIndex < dialogueData.dialogueLines.Length){
             StartCoroutine(TypeLine());
@@ -88,6 +94,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
 
     public void EndDialogue()
     {
+        PauseController.instance.UnPause();
         StopAllCoroutines();
         dialogueTextBox.SetText("");
         dialoguePanel.SetActive(false);
