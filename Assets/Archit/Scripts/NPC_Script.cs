@@ -10,6 +10,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
     public Button closeButton;
     private bool isTyping;
     private int dialogueIndex;
+    private int choicesDialogueIndex=0;
     private bool isDialogueActive;
 
     private void Start()
@@ -61,13 +62,37 @@ public class NPC_Script : MonoBehaviour, IInteractable
                 closeButton.interactable = true;
             }
         }
-        else if(++dialogueIndex < dialogueData.dialogueLines.Length){
+
+        dialogueUI.ClearChoices();
+
+        foreach(DialogueChoice choice in dialogueData.dialogueChoices)
+        {
+            if (choice.dialogueIndex == dialogueIndex)
+            {
+                DisplayChoices(choice);
+                return;
+            }
+        }
+
+        if (++dialogueIndex < dialogueData.dialogueLines.Length) {
             StartCoroutine(TypeLine());
         }
         else
         {
             EndDialogue();
         }
+    }
+
+    public void DisplayChoices(DialogueChoice dialogueChoice)
+    {
+        int nextIndex = dialogueChoice.nextDialogueIndex[dialogueIndex];
+        dialogueUI.GenerateChoices(dialogueData.dialogueChoices[choicesDialogueIndex], () => ChooseOption(nextIndex));
+    }
+
+    public void ChooseOption(int nextIndex)
+    {
+        dialogueIndex = nextIndex;
+        dialogueUI.ClearChoices();
     }
     IEnumerator TypeLine()
     {
@@ -84,6 +109,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
             closeButton.interactable = true;
         }
         isTyping = false;
+
         if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
         {
             yield return new WaitForSeconds(dialogueData.autoProgressDelay);

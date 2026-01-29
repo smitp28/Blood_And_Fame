@@ -7,8 +7,11 @@ public class DialogueController : MonoBehaviour
     public static DialogueController instance { get; private set; }
 
     public TMP_Text dialogueTextBox, nameTextBox;
-    public GameObject dialoguePanel;
     public Image potraitImage;
+    public GameObject dialoguePanel;
+    public Transform choicePanel;
+    public GameObject choiceButtonPrefab;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -32,5 +35,24 @@ public class DialogueController : MonoBehaviour
     public void SetDialogueText(string dialogueText)
     {
         dialogueTextBox.text = dialogueText;
+    }
+
+    public void GenerateChoices(DialogueChoice choiceDialogue, UnityEngine.Events.UnityAction onClick)
+    {
+        for(int i=1; i<choiceDialogue.choices.Length; i++)
+        {
+            GameObject choiceButton = Instantiate(choiceButtonPrefab, choicePanel);
+            TMP_Text choiceButtonText = choiceButton.GetComponentInChildren<TMP_Text>();
+            choiceButtonText.SetText(choiceDialogue.choices[i]);
+            choiceButton.GetComponent<Button>().onClick.AddListener(onClick);
+        }
+    }
+
+    public void ClearChoices()
+    {
+        foreach(Transform child in choicePanel)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }
