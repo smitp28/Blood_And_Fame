@@ -9,7 +9,7 @@ public class Dialogues : ScriptableObject
     public float typingSpeed = 0.05f;
     public bool[] autoProgressLines;
     public float autoProgressDelay = 1.5f;
-
+    public bool[] endDialogueLines;
     public DialogueChoice[] dialogueChoices;
 }
 

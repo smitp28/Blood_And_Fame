@@ -37,15 +37,12 @@ public class DialogueController : MonoBehaviour
         dialogueTextBox.text = dialogueText;
     }
 
-    public void GenerateChoices(DialogueChoice choiceDialogue, UnityEngine.Events.UnityAction onClick)
+    public void GenerateChoiceButton(string choiceText, UnityEngine.Events.UnityAction onClick)
     {
-        for(int i=1; i<choiceDialogue.choices.Length; i++)
-        {
-            GameObject choiceButton = Instantiate(choiceButtonPrefab, choicePanel);
-            TMP_Text choiceButtonText = choiceButton.GetComponentInChildren<TMP_Text>();
-            choiceButtonText.SetText(choiceDialogue.choices[i]);
-            choiceButton.GetComponent<Button>().onClick.AddListener(onClick);
-        }
+        GameObject choiceButton = Instantiate(choiceButtonPrefab, choicePanel);
+        TMP_Text choiceButtonText = choiceButton.GetComponentInChildren<TMP_Text>();
+        choiceButtonText.SetText(choiceText);
+        choiceButton.GetComponent<Button>().onClick.AddListener(onClick);
     }
 
     public void ClearChoices()

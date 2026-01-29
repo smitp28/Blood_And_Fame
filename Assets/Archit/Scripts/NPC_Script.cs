@@ -10,7 +10,6 @@ public class NPC_Script : MonoBehaviour, IInteractable
     public Button closeButton;
     private bool isTyping;
     private int dialogueIndex;
-    private int choicesDialogueIndex=0;
     private bool isDialogueActive;
 
     private void Start()
@@ -65,6 +64,11 @@ public class NPC_Script : MonoBehaviour, IInteractable
 
         dialogueUI.ClearChoices();
 
+        if(dialogueData.endDialogueLines.Length > dialogueIndex && dialogueData.endDialogueLines[dialogueIndex])
+        {
+            EndDialogue();
+        }
+
         foreach(DialogueChoice choice in dialogueData.dialogueChoices)
         {
             if (choice.dialogueIndex == dialogueIndex)
@@ -85,15 +89,20 @@ public class NPC_Script : MonoBehaviour, IInteractable
 
     public void DisplayChoices(DialogueChoice dialogueChoice)
     {
-        int nextIndex = dialogueChoice.nextDialogueIndex[dialogueIndex];
-        dialogueUI.GenerateChoices(dialogueData.dialogueChoices[choicesDialogueIndex], () => ChooseOption(nextIndex));
+        for (int i = 0; i < dialogueChoice.choices.Length; i++)
+        {
+            int nextIndex = dialogueChoice.nextDialogueIndex[i];
+            dialogueUI.GenerateChoiceButton(dialogueChoice.choices[i], () => ChooseOption(nextIndex));
+        }
     }
 
     public void ChooseOption(int nextIndex)
     {
         dialogueIndex = nextIndex;
         dialogueUI.ClearChoices();
+        StartCoroutine(TypeLine());
     }
+
     IEnumerator TypeLine()
     {
         isTyping = true;
@@ -102,7 +111,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
         foreach(char letter in dialogueData.dialogueLines[dialogueIndex])
         {
             dialogueUI.SetDialogueText(dialogueUI.dialogueTextBox.text += letter);
-            yield return new WaitForSeconds(dialogueData.typingSpeed);
+            yield return new WaitForSecondsRealtime(dialogueData.typingSpeed);
         }
         if (dialogueData.dialogueLines.Length <= dialogueIndex + 1)
         {
@@ -112,17 +121,17 @@ public class NPC_Script : MonoBehaviour, IInteractable
 
         if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
         {
-            yield return new WaitForSeconds(dialogueData.autoProgressDelay);
+            yield return new WaitForSecondsRealtime(dialogueData.autoProgressDelay);
             NextLine();
         }
     }
 
     public void EndDialogue()
     {
-        PauseController.instance.UnPause();
         StopAllCoroutines();
         dialogueUI.SetDialogueText("");
         dialogueUI.ShowDialogueUI(false);
         isDialogueActive = false;
+        PauseController.instance.UnPause();
     }
 }

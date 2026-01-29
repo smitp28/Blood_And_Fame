@@ -483,8 +483,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   dialogueTextBox: {fileID: 1988126108}
   nameTextBox: {fileID: 216916419}
-  dialoguePanel: {fileID: 906000268}
   potraitImage: {fileID: 1924266938}
+  dialoguePanel: {fileID: 906000268}
+  choicePanel: {fileID: 185300206}
+  choiceButtonPrefab: {fileID: 7380123744788878118, guid: 7c207cf23f7503548bccc3d02c9beca3, type: 3}
 --- !u!1 &636671159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &906000269
 RectTransform:
   m_ObjectHideFlags: 0

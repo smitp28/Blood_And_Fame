@@ -20,9 +20,10 @@ MonoBehaviour:
   - Thanks!!
   - Ohh no problem...
   typingSpeed: 0.05
-  autoProgressLines: 0100
+  autoProgressLines: 01000101
   autoProgressDelay: 1.5
-  choices:
+  endDialogueLines: 00000101
+  dialogueChoices:
   - dialogueIndex: 1
     nextDialogueIndex: 0200000003000000
     choices:
