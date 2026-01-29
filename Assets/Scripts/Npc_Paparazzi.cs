@@ -25,72 +25,57 @@ public class Npc_Paparazzi : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         paparazzicoll = GetComponent<Collider2D>();
-
-        PickNewMarker();
-        StartMoving();
+        agent.stoppingDistance = 0.1f;
+        StartCoroutine(WaitAndMove());
     }
 
     // Update is called once per frame
     public void Update()
     {
-       if (agent.remainingDistance <= agent.stoppingDistance && !isWaiting)
-        {
-           StartCoroutine(WaitAndMove());
-        }
-
         fieldOfView.SetOrigin(transform.position);
         Vector3 vel = agent.velocity;
-
-        if (vel.sqrMagnitude > 0.1f)
+        if (vel.sqrMagnitude > 0.01f)
         {
             float angle = Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
-
-    public void StartMoving()
+    
+    IEnumerator WaitAndMove()
     {
-        agent.speed = 3.5f;
-        agent.SetDestination(targetpos.position);
-    }
-
-    public void StopMoving()
-    { 
-        agent.speed = 0;   
+        while (true)
+        { 
+            PickNewMarker();
+            agent.isStopped = false;
+            agent.ResetPath();
+            agent.SetDestination(targetpos.position);
+            yield return new WaitUntil(() => !agent.pathPending || agent.hasPath);
+            yield return new WaitUntil(() => agent.remainingDistance <= agent.stoppingDistance && agent.velocity.sqrMagnitude<0.01f);    
+            agent.isStopped = true;
+            yield return new WaitForSeconds(cooldown);
+        }
     }
 
     public void PickNewMarker()
     {
         randomnum = Random.Range(0f, 1f);
-        if (randomnum < 0.25f)
+        if (randomnum <= 0.25f)
         {
             marker = marker1;
         }
-        else if (randomnum < 0.5f)
+        else if (randomnum <= 0.5f)
         {
             marker = marker2;
         }
-        else if (randomnum < 0.75f)
+        else if (randomnum <= 0.75f)
         {
             marker = marker3;
         }
-        else if (randomnum < 1)
+        else if (randomnum <= 1)
         {
             marker = marker4;
         }
         targetpos = marker.transform;
     }
-
-    IEnumerator WaitAndMove()
-    {   
-        isWaiting = true;
-        StopMoving();
-        yield return new WaitForSeconds(cooldown);
-        PickNewMarker();
-        StartMoving();
-        isWaiting = false;
-    }
-
-
 
 }
