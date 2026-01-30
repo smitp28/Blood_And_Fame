@@ -118,10 +118,6 @@ public class Npc_Paparazzi : MonoBehaviour
         }
         targetpos = marker.transform;
 
-
-
-
-
     }
 
 }
