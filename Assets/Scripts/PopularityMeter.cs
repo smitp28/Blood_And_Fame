@@ -9,10 +9,10 @@ public class PopularityMeter : MonoBehaviour
     public float lerpspeed = 0.1f;
     public Image popularityBar;
     public float rate;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+   
+    private void Awake()
     {
-
+        instance = this;
     }
 
     // Update is called once per frame

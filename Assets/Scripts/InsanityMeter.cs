@@ -10,9 +10,9 @@ public class InsanityMeter : MonoBehaviour
     public Image insanityBar;
     public float rate;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        instance = this;
     }
 
     // Update is called once per frame

@@ -5,32 +5,60 @@ using UnityEditor;
 
 public class Enemy_Spawner : MonoBehaviour
 {
-    private float timer;
-    public float spawnInterval = 3f;
+    public int enemyCount;
     public GameObject _enemyPrefab;
-
+    public GameObject PopMeter;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (timer > 0)
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Paparazzi");
+        enemyCount = enemies.Length;
+        if (PopularityMeter.instance.Current > 100f)
         {
-            timer -= Time.deltaTime;
+            if (enemyCount <= 10)
+            { 
+                SpawnEnemy();
+            }
         }
-        else
+        else if (PopularityMeter.instance.Current > 80f)
         {
-            SpawnEnemy();
-            timer = spawnInterval;
+            if (enemyCount <= 8)
+            {
+                SpawnEnemy();
+            }
+        }
+        else if (PopularityMeter.instance.Current > 60f)
+        {
+            if (enemyCount <= 6)
+            {
+                SpawnEnemy();
+            }
+        }
+        else if (PopularityMeter.instance.Current > 40f)
+        {
+            if (enemyCount <= 4)
+            {
+                SpawnEnemy();
+            }
+        }
+        else if (PopularityMeter.instance.Current > 20f)
+        {
+            if (enemyCount <= 2)
+            {
+                SpawnEnemy();
+            }
         }
     }
 
     private void SpawnEnemy()
     {
         Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        enemyCount++;
     }
 }
