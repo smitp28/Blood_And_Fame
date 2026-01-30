@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
             case PlayerStates.Walking:
                 rb.linearVelocity = moveSpeed * moveInput;
                 break;
+            case PlayerStates.Attacking:
+                rb.linearVelocity = Vector2.zero;
+                break;
         }
     }
     public void Invis(InputAction.CallbackContext context)
