@@ -62,7 +62,8 @@ public class PlayerController : MonoBehaviour
             lastMoveInput = moveInput;
             ChangeState(PlayerStates.Walking);
         }
-        else if (context.canceled) { 
+        else if (context.canceled) {
+            moveInput = Vector2.zero;
             animator.SetFloat("LastInputX", lastMoveInput.x);
             animator.SetFloat("LastInputY", lastMoveInput.y);
             ChangeState(PlayerStates.Idle);

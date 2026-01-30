@@ -16,7 +16,16 @@ MonoBehaviour:
   npcSprite: {fileID: 1820790034032967366, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - Hi kiddo..
-  - Would you mind helping me cross the road...
+  - Would you mind helping me cross the road?
+  - Thanks!!
+  - Ohh no problem...
   typingSpeed: 0.05
-  autoProgressLines: 0100
+  autoProgressLines: 01000101
   autoProgressDelay: 1.5
+  endDialogueLines: 00000101
+  dialogueChoices:
+  - dialogueIndex: 1
+    nextDialogueIndex: 0200000003000000
+    choices:
+    - Yes
+    - No
