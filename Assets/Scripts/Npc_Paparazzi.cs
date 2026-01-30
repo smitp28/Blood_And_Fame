@@ -6,7 +6,7 @@ using UnityEditor.AdaptivePerformance.Editor;
 public class Npc_Paparazzi : MonoBehaviour
 {
     public Transform targetpos;
-    NavMeshAgent agent;
+    public NavMeshAgent agent;
     public GameObject marker1;
     public GameObject marker2;
     public GameObject marker3;
@@ -17,7 +17,6 @@ public class Npc_Paparazzi : MonoBehaviour
     public FOV fieldOfView;
     private float cooldown = 1f;
     private float randomnum;
-    private bool isWaiting = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {
@@ -44,7 +43,8 @@ public class Npc_Paparazzi : MonoBehaviour
     IEnumerator WaitAndMove()
     {
         while (true)
-        { 
+        {
+            yield return new WaitUntil(() => fieldOfView.isCheckingcorpse == false);
             PickNewMarker();
             agent.isStopped = false;
             agent.ResetPath();
