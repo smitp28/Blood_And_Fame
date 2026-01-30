@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using NavMeshPlus.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,19 @@ public class FOV : MonoBehaviour
     public GameObject paparazzi;
     public Mesh mesh;
     public Vector3 origin;
-    public Collider2D pcoll;
+    public Collider2D papacoll;
+    public Collider2D playercoll;
+    public Collider2D corpsecoll;
+    public bool playervisible;
+    public bool corpsevisible;
+    public float lowkilldist = 2f;
+    public float medkilldist = 4f;
+    public float highkilldist = 6f;
+    public float lowinsanity = 5f;
+    public float medinsanity = 10f;
+    public float highinsanity = 15f;
+    private float scanTime = 1f;
+    public bool isCheckingcorpse = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -17,11 +30,19 @@ public class FOV : MonoBehaviour
         GetComponent<MeshFilter>().mesh = mesh;
         MeshRenderer mr = GetComponent<MeshRenderer>();
         paparazzi = GameObject.FindWithTag("Paparazzi");
+        papacoll = paparazzi.GetComponent<Collider2D>();
+        GameObject player = GameObject.FindWithTag("Player");
+        playercoll = player.GetComponent<Collider2D>();
+        GameObject corpse = GameObject.FindWithTag("Corpse");
+        corpsecoll = corpse.GetComponent<Collider2D>();
+        GameObject popularitymeter = GameObject.FindWithTag("PopularityMeter");
     }
 
     // Update is called once per frame
     void Update()
     {
+        playervisible = false;
+        corpsevisible = false;
         float fov = 90f;
         int rayCount = 90;
         float angle = transform.parent.eulerAngles.z - fov/2f + 90f;
@@ -48,6 +69,18 @@ public class FOV : MonoBehaviour
             if (raycastHit2D.collider == null)
             {
                 worldend = origin + worlddir * viewDistance;
+            }
+            else if (raycastHit2D.collider == playercoll)
+            {
+                playervisible = true;
+            }
+            else if (raycastHit2D.collider == corpsecoll)
+            { 
+                corpsevisible = true;
+                if (!isCheckingcorpse)
+                {
+                    StartCoroutine(CheckCorpse());
+                }
             }
             else
             {
@@ -77,5 +110,30 @@ public class FOV : MonoBehaviour
     public void SetOrigin(Vector3 origin)
     { 
         this.origin = origin;
+    }
+
+    IEnumerator CheckCorpse()
+    {
+        if (corpsevisible == true)
+        {
+            isCheckingcorpse = true;
+            GetComponentInParent<Npc_Paparazzi>().agent.isStopped = true;
+            yield return new WaitForSeconds(scanTime);
+            if (Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < lowkilldist)
+            {
+                InsanityMeter.instance.ApplyInsanity(highinsanity);
+            }
+            else if (Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < medkilldist)
+            {
+                InsanityMeter.instance.ApplyInsanity(medinsanity);
+            }
+            else if (Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < highkilldist)
+            {
+                InsanityMeter.instance.ApplyInsanity(lowinsanity);
+            }
+            GetComponentInParent<Npc_Paparazzi>().agent.isStopped = false;
+            isCheckingcorpse = false;
+        }
+        
     }
 }
