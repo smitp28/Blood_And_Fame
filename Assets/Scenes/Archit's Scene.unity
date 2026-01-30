@@ -431,8 +431,8 @@ Transform:
   m_GameObject: {fileID: 308898467}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.95, y: -2.08, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.3176, y: -2.4708, z: 0}
+  m_LocalScale: {x: 0.2648, y: 0.2183, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 972411630}
@@ -547,7 +547,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.690566, g: 0.12899247, b: 0.12899247, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -603,6 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152a1934db455894bbeae972b531c208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  completedQuestIDs: []
   activeQuest:
     quest: {fileID: 0}
     objectives: []
