@@ -16,16 +16,22 @@ MonoBehaviour:
   npcSprite: {fileID: 1820790034032967366, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - Hi kiddo..
-  - Would you mind helping me cross the road?
+  - Will you help me find my wallet?
   - Thanks!!
-  - Ohh no problem...
+  - Ohhk no problem...
+  - I badly need my wallet
+  - Thanks A Lot
   typingSpeed: 0.05
-  autoProgressLines: 01000101
+  autoProgressLines: 010100000100
   autoProgressDelay: 1.5
-  endDialogueLines: 00000101
+  endDialogueLines: 000001010101
   dialogueChoices:
   - dialogueIndex: 1
     nextDialogueIndex: 0200000003000000
     choices:
     - Yes
     - No
+    givesQuest: 0100
+  questInProgressIndex: 4
+  questCompletedIndex: 5
+  quest: {fileID: 11400000, guid: 1b657d3da8305594183e0d91841c249d, type: 2}

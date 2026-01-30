@@ -27,7 +27,7 @@ public class QuestObjective
     public string description;
     public ObjectiveType type;
     public int requiredAmount;
-    public int currentAmount;
+    public int currentAmount=0;
 
     public bool IsCompleted => currentAmount >= requiredAmount;
 }
@@ -42,6 +42,7 @@ public class QuestProgress
     public QuestProgress(Quest quest)
     {
         this.quest = quest;
+        if (quest == null) return;
         objectives = new List<QuestObjective>();
 
         foreach(var obj in quest.objectives)
@@ -58,5 +59,6 @@ public class QuestProgress
     }
 
     public bool IsCompleted => objectives.TrueForAll(x => x.IsCompleted);
-    public string QuestID => quest.questID;
+    public string QuestID => (quest != null) ? quest.questID : string.Empty;
+
 }
