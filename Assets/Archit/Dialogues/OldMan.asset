@@ -15,23 +15,24 @@ MonoBehaviour:
   npcName: Old Man
   npcSprite: {fileID: 1820790034032967366, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
-  - Hi kiddo..
-  - Will you help me find my wallet?
-  - Thanks!!
-  - Ohhk no problem...
-  - I badly need my wallet
-  - Thanks A Lot
+  - "Oh, hello. I didn\u2019t see you there, my eyes aren\u2019t what they used to
+    be."
+  - "I\u2019ve dropped my father's old pocket watch. It\u2019s brass and very worn."
+  - You have a youthful stride. Mind looking around for it?
+  - "Bless you. I\u2019ll be resting right here."
+  - "I understand. It\u2019s a lot to ask of a stranger. Safe travels."
+  - My heart... you found it! Thank you for being kind to an old soul.
   typingSpeed: 0.05
-  autoProgressLines: 010100000100
+  autoProgressLines: 000001000000
   autoProgressDelay: 1.5
-  endDialogueLines: 000001010101
+  endDialogueLines: 000000010101
   dialogueChoices:
   - dialogueIndex: 1
-    nextDialogueIndex: 0200000003000000
+    nextDialogueIndex: 0300000004000000
     choices:
     - Yes
     - No
     givesQuest: 0100
-  questInProgressIndex: 4
+  questInProgressIndex: 3
   questCompletedIndex: 5
   quest: {fileID: 11400000, guid: 1b657d3da8305594183e0d91841c249d, type: 2}
