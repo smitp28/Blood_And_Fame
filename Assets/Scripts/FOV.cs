@@ -23,6 +23,8 @@ public class FOV : MonoBehaviour
     public float highinsanity = 15f;
     private float scanTime = 1f;
     public bool isCheckingcorpse = false;
+    public GameObject victim;
+    public bool corpsevis;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -33,8 +35,9 @@ public class FOV : MonoBehaviour
         papacoll = paparazzi.GetComponent<Collider2D>();
         GameObject player = GameObject.FindWithTag("Player");
         playercoll = player.GetComponent<Collider2D>();
-        GameObject corpse = GameObject.FindWithTag("Corpse");
-        corpsecoll = corpse.GetComponent<Collider2D>();
+        victim = GameObject.FindWithTag("victims");
+        corpsevis = victim.GetComponent<Npc_Victims>().isDead;
+        corpsecoll = victim.GetComponent<Collider2D>();
         GameObject popularitymeter = GameObject.FindWithTag("PopularityMeter");
     }
 
@@ -74,7 +77,7 @@ public class FOV : MonoBehaviour
             {
                 playervisible = true;
             }
-            else if (raycastHit2D.collider == corpsecoll)
+            else if (raycastHit2D.collider == corpsecoll && corpsevis == true)
             { 
                 corpsevisible = true;
                 if (!isCheckingcorpse)
@@ -119,15 +122,15 @@ public class FOV : MonoBehaviour
             isCheckingcorpse = true;
             GetComponentInParent<Npc_Paparazzi>().agent.isStopped = true;
             yield return new WaitForSeconds(scanTime);
-            if (Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < lowkilldist)
+            if ((Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < lowkilldist) && corpsevis == true)
             {
                 InsanityMeter.instance.ApplyInsanity(highinsanity);
             }
-            else if (Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < medkilldist)
+            else if ((Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < medkilldist) && corpsevis == true)
             {
                 InsanityMeter.instance.ApplyInsanity(medinsanity);
             }
-            else if (Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < highkilldist)
+            else if ((Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < highkilldist) && corpsevis == true)
             {
                 InsanityMeter.instance.ApplyInsanity(lowinsanity);
             }

@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
             Victim.GetComponent<Npc_Victims>().isDead = true;
             AudioManager.instance.PlaySoundFx(eatingBones, transform, 1f);
             killingScreen.SetActive(true);
+            killingScreen.GetComponentInChildren<Animator>().Play("KillingAnimation");
             ChangeState(PlayerStates.Attacking);
             yield return new WaitForSeconds(attackTime);
             killingScreen.SetActive(false);
