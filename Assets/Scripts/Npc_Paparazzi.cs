@@ -32,7 +32,6 @@ public class Npc_Paparazzi : MonoBehaviour
         agent.updateUpAxis = false;
         paparazzicoll = GetComponent<Collider2D>();
         agent.stoppingDistance = 0.1f;
-        StartCoroutine(WaitAndMove());
         marker1 = GameObject.FindWithTag("M1");
         marker2 = GameObject.FindWithTag("M2");
         marker3 = GameObject.FindWithTag("M3");
@@ -43,6 +42,7 @@ public class Npc_Paparazzi : MonoBehaviour
         marker8 = GameObject.FindWithTag("M8");
         marker9 = GameObject.FindWithTag("M9");
         marker10 = GameObject.FindWithTag("M10");
+        StartCoroutine(WaitAndMove());
         personaloffset = Random.insideUnitCircle.normalized*Random.Range(0.2f, 1f);
     }
 

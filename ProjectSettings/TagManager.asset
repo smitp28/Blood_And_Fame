@@ -17,6 +17,17 @@ TagManager:
   - M8
   - M9
   - M10
+  - VM1
+  - VM2
+  - VM3
+  - VM4
+  - VM5
+  - VM6
+  - VM7
+  - VM8
+  - VM9
+  - VM10
+  - Victim
   layers:
   - Default
   - TransparentFX
@@ -24,7 +35,7 @@ TagManager:
   - Paparazzi
   - Water
   - UI
-  - 
+  - victims
   - 
   - 
   - 

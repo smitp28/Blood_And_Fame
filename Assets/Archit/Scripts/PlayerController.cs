@@ -13,11 +13,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 5;
     public Vector2 moveInput;
     public Vector2 lastMoveInput;
-
+    public LayerMask victims;
+    public Transform attackPoint;
+    public float attackRange;
+    public float attackTime;
+    public bool canMove;
     private void Start()
     {
         currentState = PlayerStates.Idle;
         spriteColor = playerSprite.color;
+        canMove = true;
     }
     private void Update()
     {
@@ -27,10 +32,12 @@ public class PlayerController : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 break;
             case PlayerStates.Walking:
+                canMove = true;
                 rb.linearVelocity = moveSpeed * moveInput;
                 break;
             case PlayerStates.Attacking:
                 rb.linearVelocity = Vector2.zero;
+                canMove = false;
                 break;
         }
     }
@@ -54,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (canMove == false)
+        { return; }
         if (context.performed)
         {
             moveInput = context.ReadValue<Vector2>();
@@ -75,7 +84,7 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             animator.SetTrigger("Attack");
-            ChangeState(PlayerStates.Attacking);
+            StartCoroutine(Kill());
             Debug.Log("Attacking");
         }
     }
@@ -83,13 +92,26 @@ public class PlayerController : MonoBehaviour
     public void ChangeState(PlayerStates newState) {
         if (currentState == PlayerStates.Idle) animator.SetBool("isIdle", false);
         if (currentState == PlayerStates.Walking) animator.SetBool("isWalking", false);
-        if (currentState == PlayerStates.Walking) animator.SetBool("isAttacking", false);
+        if (currentState == PlayerStates.Attacking) animator.SetBool("isAttacking", false);
 
         currentState= newState;
 
         if (currentState == PlayerStates.Idle) animator.SetBool("isIdle", true);
         if (currentState == PlayerStates.Walking) animator.SetBool("isWalking", true);
-        if (currentState == PlayerStates.Walking) animator.SetBool("isAttacking", true);
+        if (currentState == PlayerStates.Attacking) animator.SetBool("isAttacking", true);
+    }
+
+    private IEnumerator Kill()
+    {
+        Collider2D Victim = Physics2D.OverlapCircle(attackPoint.position, attackRange, victims);
+        if (Victim != null)
+        { 
+            Victim.GetComponent<Npc_Victims>().isDead = true;
+            ChangeState(PlayerStates.Attacking);
+            yield return new WaitForSeconds(attackTime);
+            ChangeState(PlayerStates.Walking);
+        }
+        
     }
 }
 public enum PlayerStates { Idle, Walking, Attacking, Invisible};
