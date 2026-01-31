@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public float attackRange;
     public float attackTime;
     public bool canMove;
+    public AudioClip eatingBones;
+    public GameObject killingScreen;
     private void Start()
     {
         currentState = PlayerStates.Idle;
@@ -107,8 +110,11 @@ public class PlayerController : MonoBehaviour
         if (Victim != null)
         { 
             Victim.GetComponent<Npc_Victims>().isDead = true;
+            AudioManager.instance.PlaySoundFx(eatingBones, transform, 1f);
+            killingScreen.SetActive(true);
             ChangeState(PlayerStates.Attacking);
             yield return new WaitForSeconds(attackTime);
+            killingScreen.SetActive(false);
             ChangeState(PlayerStates.Walking);
         }
         

@@ -871,6 +871,15 @@ MonoBehaviour:
   moveSpeed: 5
   moveInput: {x: 0, y: 0}
   lastMoveInput: {x: 0, y: 0}
+  victims:
+    serializedVersion: 2
+    m_Bits: 0
+  attackPoint: {fileID: 0}
+  attackRange: 0
+  attackTime: 0
+  canMove: 0
+  eatingBones: {fileID: 8300000, guid: 123d637a1359262458f501f1eee8ef3b, type: 3}
+  killingScreen: {fileID: 0}
 --- !u!212 &636671163
 SpriteRenderer:
   serializedVersion: 2
@@ -1723,7 +1732,7 @@ GameObject:
   - component: {fileID: 1506274212}
   - component: {fileID: 1506274214}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: PlayerCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2479,12 +2488,12 @@ GameObject:
   - component: {fileID: 2113868013}
   - component: {fileID: 2113868012}
   m_Layer: 5
-  m_Name: Image
+  m_Name: KillingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2113868011
 RectTransform:
   m_ObjectHideFlags: 0
