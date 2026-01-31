@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.AdaptivePerformance.Editor;
 public class Npc_Victims : MonoBehaviour
 {
     public Transform targetpos;
