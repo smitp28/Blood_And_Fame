@@ -28,6 +28,7 @@ TagManager:
   - VM9
   - VM10
   - Victim
+  - Corpse
   layers:
   - Default
   - TransparentFX

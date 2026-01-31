@@ -25,6 +25,8 @@ public class Npc_Victims : MonoBehaviour
     private Vector3 personaloffset;
     public bool isDead;
     public float deadTimer;
+    private Animator anim;
+    Vector3 vel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {
@@ -43,10 +45,11 @@ public class Npc_Victims : MonoBehaviour
         marker8 = GameObject.FindWithTag("VM8");
         marker9 = GameObject.FindWithTag("VM9");
         marker10 = GameObject.FindWithTag("VM10");
+        anim = GetComponent<Animator>();
         StartCoroutine(WaitAndMove());
         personaloffset = Random.insideUnitCircle.normalized * Random.Range(0.2f, 1f);
         isDead = false;
-        deadTimer = 30f;
+        deadTimer = 30f;    
     }
 
     // Update is called once per frame
@@ -57,7 +60,9 @@ public class Npc_Victims : MonoBehaviour
             agent.velocity = Vector3.zero;
             return;
         }
-        Vector3 vel = agent.velocity;
+        vel = agent.velocity;
+        anim.SetFloat("DirX", vel.x);
+        anim.SetFloat("DirY", vel.y);
     }
 
     IEnumerator WaitAndMove()
@@ -66,10 +71,16 @@ public class Npc_Victims : MonoBehaviour
         {
             PickNewMarker();
             agent.isStopped = false;
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isWalking", true);
             agent.SetDestination(targetpos.position + personaloffset);
             yield return new WaitUntil(() => !agent.pathPending || agent.hasPath);
             yield return new WaitUntil(() => agent.remainingDistance <= agent.stoppingDistance && agent.velocity.sqrMagnitude < 0.01f);
+            anim.SetFloat("LastDirX", vel.x);
+            anim.SetFloat("LastDirY", vel.y);
             agent.isStopped = true;
+            anim.SetBool("isIdle", true);
+            anim.SetBool("isWalking", false);
             yield return new WaitForSeconds(cooldown);
         }
     }
@@ -125,8 +136,6 @@ public class Npc_Victims : MonoBehaviour
     {
         if (!isDead)
         { return; }
-
-    
     }
 
 
