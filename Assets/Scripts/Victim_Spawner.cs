@@ -9,46 +9,40 @@ public class Victim_Spawner : MonoBehaviour
     public GameObject _enemyPrefab;
     public SpriteLibraryAsset[] victimSprites;
     public GameObject PopMeter;
+    public int maxEnemyday=35;
+    public int maxEnemynight=15;
+    public int current;
 
-    // Update is called once per frame
-    void FixedUpdate()
+
+    public void SpawnEnemyNight()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Paparazzi");
-        enemyCount = enemies.Length;
-        if (PopularityMeter.instance.Current > 100f)
+        current = GameObject.FindGameObjectsWithTag("victims").Length;
+        while (current < maxEnemynight)
         {
-            if (enemyCount <= 10)
-            {
-                SpawnEnemy();
-            }
+            SpawnEnemy();
+            current++;
         }
-        else if (PopularityMeter.instance.Current > 80f)
+        while (current > maxEnemynight)
         {
-            if (enemyCount <= 8)
-            {
-                SpawnEnemy();
-            }
+            GameObject[] victims = GameObject.FindGameObjectsWithTag("victims");
+            Destroy(victims[0]);
+            current--;
         }
-        else if (PopularityMeter.instance.Current > 60f)
+    }
+
+    public void SpawnEnemyDay()
+    {
+        current = GameObject.FindGameObjectsWithTag("victims").Length;
+        while (current < maxEnemyday)
         {
-            if (enemyCount <= 6)
-            {
-                SpawnEnemy();
-            }
+            SpawnEnemy();
+            current++;
         }
-        else if (PopularityMeter.instance.Current > 40f)
+        while (current > maxEnemyday)
         {
-            if (enemyCount <= 4)
-            {
-                SpawnEnemy();
-            }
-        }
-        else if (PopularityMeter.instance.Current > 20f)
-        {
-            if (enemyCount <= 2)
-            {
-                SpawnEnemy();
-            }
+            GameObject[] victims = GameObject.FindGameObjectsWithTag("victims");
+            Destroy(victims[0]);
+            current--;
         }
     }
 
@@ -58,6 +52,6 @@ public class Victim_Spawner : MonoBehaviour
         SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
         int random = Random.Range(0, victimSprites.Length);
         spriteLibrary.spriteLibraryAsset = victimSprites[random];
-        enemyCount++;
     }
+
 }

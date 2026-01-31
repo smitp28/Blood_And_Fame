@@ -1543,17 +1543,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 797626731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ac4abf9028a97439fe92c39f03b1b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b6e524e14e21a845ad0c78758b30f76, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy_Spawner
+  m_EditorClassIdentifier: Assembly-CSharp::Victim_Spawner
   enemyCount: 0
   _enemyPrefab: {fileID: 2868463598543470563, guid: a6786cc212f405a4389009f84e531f97, type: 3}
   victimSprites:
   - {fileID: 7108339969198208228, guid: 70cea58e075fc89449343125a7f482dc, type: 3}
   - {fileID: 7108339969198208228, guid: 094019f8cb7db834b96b4ca7baee56e6, type: 3}
   - {fileID: 7108339969198208228, guid: c51fc78e049d0164da0dc59ff88ea41d, type: 3}
+  - {fileID: 7108339969198208228, guid: e2b26df130d14bb4db57462809e10af5, type: 3}
   - {fileID: 7108339969198208228, guid: df55edb11c139b94991413078ef43ddb, type: 3}
   PopMeter: {fileID: 234979778}
+  maxEnemyday: 35
+  maxEnemynight: 15
 --- !u!1 &877588089
 GameObject:
   m_ObjectHideFlags: 0
@@ -1958,7 +1961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb95660703397164a9b053f8c71146e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldTime
-  daylength: 15
+  daylength: 30
   minutesinday: 1440
 --- !u!4 &1335274050
 Transform:
@@ -2388,6 +2391,7 @@ RectTransform:
   - {fileID: 2030794198}
   - {fileID: 928075653}
   - {fileID: 234979779}
+  - {fileID: 1578854234}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2721,6 +2725,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1578854233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1578854234}
+  - component: {fileID: 1578854235}
+  m_Layer: 5
+  m_Name: WorldTime
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1578854234
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578854233}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1461566324}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1578854235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578854233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fee39620ba7818448659288c53199a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldTimeWatcher
+  worldtime: {fileID: 1335274049}
+  schedule:
+  - hour: 5
+    minute: 0
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 797626733}
+          m_TargetAssemblyTypeName: Victim_Spawner, Assembly-CSharp
+          m_MethodName: SpawnEnemyDay
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - hour: 18
+    minute: 0
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 797626733}
+          m_TargetAssemblyTypeName: Victim_Spawner, Assembly-CSharp
+          m_MethodName: SpawnEnemyNight
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1588941412
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,6 +3187,8 @@ MonoBehaviour:
   attackRange: 5
   attackTime: 1
   canMove: 0
+  eatingBones: {fileID: 0}
+  killingScreen: {fileID: 0}
 --- !u!212 &1786149617
 SpriteRenderer:
   serializedVersion: 2
@@ -3419,6 +3509,7 @@ MonoBehaviour:
   - {fileID: 7108339969198208228, guid: 70cea58e075fc89449343125a7f482dc, type: 3}
   - {fileID: 7108339969198208228, guid: 094019f8cb7db834b96b4ca7baee56e6, type: 3}
   - {fileID: 7108339969198208228, guid: c51fc78e049d0164da0dc59ff88ea41d, type: 3}
+  - {fileID: 7108339969198208228, guid: e2b26df130d14bb4db57462809e10af5, type: 3}
   - {fileID: 7108339969198208228, guid: df55edb11c139b94991413078ef43ddb, type: 3}
   PopMeter: {fileID: 234979778}
 --- !u!4 &1865948612
