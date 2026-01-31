@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float invisDuration;
     private Color spriteColor;
     [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float nightSpeed = 5;
+    private float currentSpeed;
     public Vector2 moveInput;
     public Vector2 lastMoveInput;
     public LayerMask victims;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
         currentState = PlayerStates.Idle;
         spriteColor = playerSprite.color;
         canMove = true;
+        currentSpeed = moveSpeed;
     }
     private void Update()
     {
@@ -36,13 +39,15 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerStates.Walking:
                 canMove = true;
-                rb.linearVelocity = moveSpeed * moveInput;
+                rb.linearVelocity = currentSpeed * moveInput;
                 break;
             case PlayerStates.Attacking:
                 rb.linearVelocity = Vector2.zero;
                 canMove = false;
                 break;
         }
+
+
     }
     public void Invis(InputAction.CallbackContext context)
     {
@@ -50,6 +55,18 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(ActivateInvis());
         }
+    }
+
+    public void EnableNightSpeed()
+    { 
+        StopAllCoroutines();
+        StartCoroutine(ChangeSpeed(nightSpeed));
+    }
+
+    public void DisableNightSpeed()
+    {
+        StopAllCoroutines();
+        StartCoroutine(ChangeSpeed(moveSpeed));
     }
 
     private IEnumerator ActivateInvis()
@@ -61,6 +78,19 @@ public class PlayerController : MonoBehaviour
         tmpColor.a = 1f;
         playerSprite.color = tmpColor;
     }
+
+    IEnumerator ChangeSpeed(float target)
+{
+    float start = currentSpeed;
+    float t = 0f;
+
+    while (t < 1f)
+    {
+        t += Time.deltaTime;
+        currentSpeed = Mathf.Lerp(start, target, t);
+        yield return null;
+    }
+}
 
     public void Move(InputAction.CallbackContext context)
     {
