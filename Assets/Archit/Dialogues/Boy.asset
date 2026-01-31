@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64c57da2a95a4ba46ad0a10f3a651eea, type: 3}
-  m_Name: OldMan
+  m_Name: Boy
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
-  npcName: Old Man
-  npcSprite: {fileID: 1820790034032967366, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
+  npcName: Boy
+  npcSprite: {fileID: -517894308114096243, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
-  - "Oh, hello. I didn\u2019t see you there, my eyes aren\u2019t what they used to
-    be."
-  - "I\u2019ve dropped my father's old pocket watch. It\u2019s brass and very worn."
-  - You have a youthful stride. Mind looking around for it?
-  - "Bless you. I\u2019ll be resting right here."
-  - "I understand. It\u2019s a lot to ask of a stranger. Safe travels."
-  - My heart... you found it! Thank you for being kind to an old soul.
+  - Hey! You! Don't move! You might step on something!
+  - My oak slingshot is gone! I dropped it while I was running.
+  - You're tall, so you can see better. Help me find it?
+  - wesome! I'll check the bushes, you check the path!
+  - Fine! I'll find it myself and I won't share my snacks!
+  - My 'Defender'! You found it! Thanks A Lot
   typingSpeed: 0.05
   autoProgressLines: 000001000000
   autoProgressDelay: 1.5
   endDialogueLines: 000000010101
   dialogueChoices:
-  - dialogueIndex: 1
+  - dialogueIndex: 3
     nextDialogueIndex: 0300000004000000
     choices:
     - Yes
@@ -35,4 +34,4 @@ MonoBehaviour:
     givesQuest: 0100
   questInProgressIndex: 3
   questCompletedIndex: 5
-  quest: {fileID: 11400000, guid: 1b657d3da8305594183e0d91841c249d, type: 2}
+  quest: {fileID: 0}
