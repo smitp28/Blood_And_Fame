@@ -32,7 +32,7 @@ public class InsanityMeter : MonoBehaviour
         HealthbarFiller();
         ColourChanger();
         HandleCameraShake();
-
+        Current = Mathf.Clamp(Current, 0, Max);
     }
 
     void HealthbarFiller()
@@ -80,6 +80,5 @@ public class InsanityMeter : MonoBehaviour
     public void ApplyInsanity(float amount)
     {
         Current += amount;
-        Current = Mathf.Clamp(Current, 0, Max);
     }
 }
