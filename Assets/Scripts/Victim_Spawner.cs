@@ -1,57 +1,37 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEngine;
 using UnityEngine.U2D.Animation;
-public class Victim_Spawner : MonoBehaviour
+
+public class VictimSpawner : MonoBehaviour
 {
-    public int enemyCount;
-    public GameObject _enemyPrefab;
+    public GameObject victimPrefab;
+    public int maxDay = 35;
+    public int maxNight = 15;
+    public bool isDay = true;
     public SpriteLibraryAsset[] victimSprites;
-    public GameObject PopMeter;
-    public int maxEnemyday=35;
-    public int maxEnemynight=15;
-    public int current;
-
-
-    public void SpawnEnemyNight()
+    void Update()
     {
-        current = GameObject.FindGameObjectsWithTag("victims").Length;
-        while (current < maxEnemynight)
+        int maxAllowed = isDay ? maxDay : maxNight;
+        GameObject[] victims = GameObject.FindGameObjectsWithTag("victims");
+
+        // DESPAWN extra (day → night)
+        if (victims.Length > maxAllowed)
         {
-            SpawnEnemy();
-            current++;
+            Destroy(victims[0]);   // remove one per frame (safe)
+            return;
         }
-        while (current > maxEnemynight)
+
+        // SPAWN missing (night → day or deaths)
+        if (victims.Length < maxAllowed)
         {
-            GameObject[] victims = GameObject.FindGameObjectsWithTag("victims");
-            Destroy(victims[0]);
-            current--;
+            GameObject victim = Instantiate(victimPrefab, transform.position, Quaternion.identity);
+            SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
+            int random = Random.Range(0, victimSprites.Length);
+            spriteLibrary.spriteLibraryAsset = victimSprites[random];
         }
     }
-
-    public void SpawnEnemyDay()
-    {
-        current = GameObject.FindGameObjectsWithTag("victims").Length;
-        while (current < maxEnemyday)
-        {
-            SpawnEnemy();
-            current++;
-        }
-        while (current > maxEnemyday)
-        {
-            GameObject[] victims = GameObject.FindGameObjectsWithTag("victims");
-            Destroy(victims[0]);
-            current--;
-        }
-    }
-
-    private void SpawnEnemy()
-    {
-        GameObject victim = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
-        SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
-        int random = Random.Range(0, victimSprites.Length);
-        spriteLibrary.spriteLibraryAsset = victimSprites[random];
-    }
-
 }
+
+
+
+
+

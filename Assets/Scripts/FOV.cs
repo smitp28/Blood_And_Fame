@@ -23,8 +23,9 @@ public class FOV : MonoBehaviour
     public float highinsanity = 15f;
     private float scanTime = 1f;
     public bool isCheckingcorpse = false;
-    public GameObject victim;
+    public GameObject[] victim;
     public bool corpsevis;
+    private float timer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -35,15 +36,18 @@ public class FOV : MonoBehaviour
         papacoll = paparazzi.GetComponent<Collider2D>();
         GameObject player = GameObject.FindWithTag("Player");
         playercoll = player.GetComponent<Collider2D>();
-        victim = GameObject.FindWithTag("victims");
-        corpsevis = victim.GetComponent<Npc_Victims>().isDead;
-        corpsecoll = victim.GetComponent<Collider2D>();
         GameObject popularitymeter = GameObject.FindWithTag("PopularityMeter");
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer =+ Time.deltaTime;
+        if (timer > 0.25f)
+        {
+            DeadVictim();
+            timer = 0f;
+        }
         playervisible = false;
         corpsevisible = false;
         float fov = 90f;
@@ -138,5 +142,20 @@ public class FOV : MonoBehaviour
             isCheckingcorpse = false;
         }
         
+    }
+
+    public void DeadVictim()
+    { 
+        corpsevisible = false;
+        victim = GameObject.FindGameObjectsWithTag("victims");
+        foreach (GameObject v in victim)
+        {
+            Npc_Victims npc = v.GetComponent<Npc_Victims>();
+            if (npc != null && npc.isDead)
+            { 
+                corpsevisible = true;
+                break;
+            }
+        }
     }
 }

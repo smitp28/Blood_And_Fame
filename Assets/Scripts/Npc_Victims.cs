@@ -25,7 +25,7 @@ public class Npc_Victims : MonoBehaviour
     private Vector3 personaloffset;
     public bool isDead;
     public float deadTimer;
-    private Animator anim;
+    public Animator anim;
     Vector3 vel;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
