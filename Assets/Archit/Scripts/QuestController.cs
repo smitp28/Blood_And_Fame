@@ -5,6 +5,7 @@ using UnityEngine;
 public class QuestController : MonoBehaviour
 {
     public List<string> completedQuestIDs = new List<string>();
+    public AudioClip questCompleted_sfx;
     public static QuestController instance { get; private set; }
     public QuestProgress activeQuest=null; // This is declared but NOT initialized yet
     [SerializeField] private QuestUI questUI;
@@ -59,7 +60,7 @@ public class QuestController : MonoBehaviour
 
         completedQuestIDs.Add(activeQuest.QuestID);
         questUI.ClearObjectives(questUI.questPanel.transform.Find("QuestName").GetComponent<TMP_Text>(), questUI.questPanel.transform.Find("ObjectiveList").GetComponent<Transform>());
-
+        AudioManager.instance.PlaySoundFx(questCompleted_sfx, transform, 1f);
         Debug.Log("Quest Finished: " + activeQuest.quest.questName);
 
         activeQuest = null;

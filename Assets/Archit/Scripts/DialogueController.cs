@@ -11,6 +11,7 @@ public class DialogueController : MonoBehaviour
     public GameObject dialoguePanel;
     public Transform choicePanel;
     public GameObject choiceButtonPrefab;
+    public AudioClip buttonClickSfx;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

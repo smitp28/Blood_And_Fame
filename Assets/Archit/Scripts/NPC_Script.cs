@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class NPC_Script : MonoBehaviour, IInteractable
 {
     public Dialogues dialogueData;
+    private AudioClip buttonSfx;
     private DialogueController dialogueUI;
     public Button closeButton;
     private bool isTyping;
@@ -16,6 +17,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
     private void Start()
     {
         dialogueUI = DialogueController.instance;
+        buttonSfx = DialogueController.instance.buttonClickSfx;
     }
     public bool CanInteract()
     {
@@ -146,6 +148,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
             QuestController.instance.AcceptQuest(dialogueData.quest);
             questState = QuestState.InProgress;
         }
+        AudioManager.instance.PlaySoundFx(buttonSfx, transform, 1f);
         dialogueIndex = nextIndex;
         dialogueUI.ClearChoices();
         DisplayCurrentLine();
