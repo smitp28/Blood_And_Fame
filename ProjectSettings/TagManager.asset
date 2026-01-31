@@ -27,8 +27,9 @@ TagManager:
   - VM8
   - VM9
   - VM10
-  - Victim
   - Corpse
+  - Wallet
+  - victims
   layers:
   - Default
   - TransparentFX

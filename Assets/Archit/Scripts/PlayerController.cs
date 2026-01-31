@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
         if (Victim != null)
         { 
             Victim.GetComponent<Npc_Victims>().isDead = true;
+            Victim.GetComponent<Npc_Victims>().anim.SetBool("isDead", true);
             AudioManager.instance.PlaySoundFx(eatingBones, transform, 1f);
             killingScreen.SetActive(true);
             killingScreen.GetComponentInChildren<Animator>().Play("KillingAnimation");
