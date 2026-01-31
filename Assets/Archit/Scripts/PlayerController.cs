@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,8 +12,8 @@ public class PlayerController : MonoBehaviour
     public PlayerStates currentState;
     public float invisDuration;
     private Color spriteColor;
-    [SerializeField] private float moveSpeed = 5;
-    [SerializeField] private float nightSpeed = 5;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float nightSpeed = 10f;
     private float currentSpeed;
     public Vector2 moveInput;
     public Vector2 lastMoveInput;
@@ -49,6 +50,20 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void FixedUpdate()
+{
+    if (currentState == PlayerStates.Walking)
+    {
+        rb.linearVelocity = moveInput.normalized * currentSpeed;
+    }
+    else
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
+    
+
+}
+
     public void Invis(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -59,14 +74,14 @@ public class PlayerController : MonoBehaviour
 
     public void EnableNightSpeed()
     { 
-        StopAllCoroutines();
-        StartCoroutine(ChangeSpeed(nightSpeed));
+         currentSpeed = nightSpeed;
+         
     }
 
     public void DisableNightSpeed()
     {
-        StopAllCoroutines();
-        StartCoroutine(ChangeSpeed(moveSpeed));
+       currentSpeed = moveSpeed;
+       
     }
 
     private IEnumerator ActivateInvis()
@@ -79,18 +94,6 @@ public class PlayerController : MonoBehaviour
         playerSprite.color = tmpColor;
     }
 
-    IEnumerator ChangeSpeed(float target)
-{
-    float start = currentSpeed;
-    float t = 0f;
-
-    while (t < 1f)
-    {
-        t += Time.deltaTime;
-        currentSpeed = Mathf.Lerp(start, target, t);
-        yield return null;
-    }
-}
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -118,7 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             StartCoroutine(Kill());
-            Debug.Log("Attacking");
+            UnityEngine.Debug.Log("Attacking");
         }
     }
 
