@@ -10,6 +10,7 @@ public class InsanityMeter : MonoBehaviour
     public float lerpspeed = 0.1f;
     public Image insanityBar;
     public float rate;
+    public GameObject gameOverPanel;
     private CinemachineImpulseSource impulseSource;
      public float shakeAt80Interval = 2f;
     public float shakeAt90Interval = 1f;
@@ -33,6 +34,15 @@ public class InsanityMeter : MonoBehaviour
         ColourChanger();
         HandleCameraShake();
         Current = Mathf.Clamp(Current, 0, Max);
+
+        if (Current >= Max)
+        { 
+            gameOverPanel.SetActive(true);
+        }
+        if (Current <= 0)
+        { 
+            Current = 0.05f;
+        }
     }
 
     void HealthbarFiller()

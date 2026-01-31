@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove;
     public AudioClip eatingBones;
     public GameObject killingScreen;
+    public GameObject victim;
     private void Start()
     {
         currentState = PlayerStates.Idle;
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-
+        victim = GameObject.FindGameObjectWithTag("victims");
     }
     private void FixedUpdate()
 {
@@ -140,9 +141,10 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Kill()
     {
         Collider2D Victim = Physics2D.OverlapCircle(attackPoint.position, attackRange, victims);
-        if (Victim != null)
+        if (Victim != null && victim.GetComponent<Npc_Victims>().isDead==false)
         { 
             Victim.GetComponent<Npc_Victims>().isDead = true;
+            InsanityMeter.instance.ApplyInsanity(-15f);
             Victim.GetComponent<Npc_Victims>().anim.SetBool("isDead", true);
             AudioManager.instance.PlaySoundFx(eatingBones, transform, 1f);
             killingScreen.SetActive(true);

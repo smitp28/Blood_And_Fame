@@ -19,7 +19,6 @@ public class FOV : MonoBehaviour
     public float medkilldist = 4f;
     public float highkilldist = 6f;
     public float lowinsanity = 5f;
-    public GameObject gameOverPanel;
     public float medinsanity = 10f;
     public float highinsanity = 15f;
     private float scanTime = 1f;
@@ -39,6 +38,7 @@ public class FOV : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         playercoll = player.GetComponent<Collider2D>();
         GameObject popularitymeter = GameObject.FindWithTag("PopularityMeter");
+        victim = GameObject.FindGameObjectsWithTag("victims");
     }
 
     // Update is called once per frame
@@ -80,13 +80,21 @@ public class FOV : MonoBehaviour
             {
                 worldend = origin + worlddir * viewDistance;
             }
-            if (raycastHit2D.collider == playercoll)
+            else if (raycastHit2D.collider == playercoll && corpsecoll && corpsevisible == true)
+            {
+                playervisible = true;
+                corpsevis = true;
+                StartCoroutine(CheckCorpse());
+               
+                InsanityMeter.instance.ApplyInsanity(100);
+            }
+            else if (raycastHit2D.collider == playercoll)
             {
                 playervisible = true;
             }
-            if (raycastHit2D.collider == corpsecoll && corpsevis == true)
-            { 
-                corpsevisible = true;
+            else if (raycastHit2D.collider == corpsecoll && corpsevisible == true)
+            {
+                corpsevis = true;
                 if (!isCheckingcorpse)
                 {
                     StartCoroutine(CheckCorpse());
@@ -126,12 +134,6 @@ public class FOV : MonoBehaviour
     {
         if (corpsevisible == true)
         {
-            if (playervisible)
-            {
-                //Game Over
-                gameOverPanel.SetActive(true);
-                //DisplayGameOverscreen
-            }
             isCheckingcorpse = true;
             GetComponentInParent<Npc_Paparazzi>().agent.isStopped = true;
             yield return new WaitForSeconds(scanTime);
@@ -163,8 +165,10 @@ public class FOV : MonoBehaviour
             if (npc != null && npc.isDead)
             { 
                 corpsevisible = true;
+                corpsecoll = v.GetComponent<Collider2D>();
                 break;
             }
+            
         }
     }
 }

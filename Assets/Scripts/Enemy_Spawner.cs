@@ -18,35 +18,35 @@ public class Enemy_Spawner : MonoBehaviour
         enemyCount = enemies.Length;
         if (PopularityMeter.instance.Current > 100f)
         {
-            if (enemyCount <= 10)
+            if (enemyCount <= 25)
             { 
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 80f)
         {
-            if (enemyCount <= 8)
+            if (enemyCount <= 20)
             {
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 60f)
         {
-            if (enemyCount <= 6)
+            if (enemyCount <= 15)
             {
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 40f)
         {
-            if (enemyCount <= 4)
+            if (enemyCount <= 10)
             {
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 20f)
         {
-            if (enemyCount <= 2)
+            if (enemyCount <= 5)
             {
                 SpawnEnemy();
             }

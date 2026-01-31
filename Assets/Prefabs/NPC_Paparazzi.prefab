@@ -12,9 +12,6 @@ GameObject:
   - component: {fileID: 3600257777607932789}
   - component: {fileID: 6383696876746321558}
   - component: {fileID: 3473650912833750457}
-  - component: {fileID: 6836478954535576281}
-  - component: {fileID: 7910097496447258576}
-  - component: {fileID: 5256544208638353025}
   - component: {fileID: 4356877863507994443}
   m_Layer: 3
   m_Name: NPC_Paparazzi
@@ -63,13 +60,22 @@ MonoBehaviour:
   marker8: {fileID: 0}
   marker9: {fileID: 0}
   marker10: {fileID: 0}
+  marker11: {fileID: 0}
+  marker12: {fileID: 0}
+  marker13: {fileID: 0}
+  marker14: {fileID: 0}
+  marker15: {fileID: 0}
+  marker16: {fileID: 0}
+  marker17: {fileID: 0}
+  marker18: {fileID: 0}
+  marker19: {fileID: 0}
+  marker20: {fileID: 0}
   marker: {fileID: 0}
   paparazzicoll: {fileID: 0}
   player:
     serializedVersion: 2
     m_Bits: 0
   fieldOfView: {fileID: 5622103881720403838}
-  anim: {fileID: 5256544208638353025}
   vel: {x: 0, y: 0, z: 0}
 --- !u!195 &6383696876746321558
 NavMeshAgent:
@@ -129,58 +135,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &6836478954535576281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103779526796154658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteResolver
-  m_CategoryHash: 0.009161512
-  m_labelHash: 1.1802957e-35
-  m_SpriteKey: 0
-  m_SpriteHash: 126811541
---- !u!114 &7910097496447258576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103779526796154658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c29cff538c195c249b69c6f2236de67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.2D.Animation.Runtime::UnityEngine.U2D.Animation.SpriteLibrary
-  m_Library: []
-  m_SpriteLibraryAsset: {fileID: 7108339969198208228, guid: 70cea58e075fc89449343125a7f482dc, type: 3}
---- !u!95 &5256544208638353025
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2103779526796154658}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4773893d111f28242973e612d35b2f17, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &4356877863507994443
 SpriteRenderer:
   serializedVersion: 2
@@ -230,7 +184,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3083089168873209362, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ac206a39a2ca9da45b20f1424194c267, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -360,3 +314,4 @@ MonoBehaviour:
   isCheckingcorpse: 0
   victim: []
   corpsevis: 0
+  angle: 0
