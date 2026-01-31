@@ -2,17 +2,14 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine.U2D.Animation;
 
 public class Enemy_Spawner : MonoBehaviour
 {
     public int enemyCount;
     public GameObject _enemyPrefab;
+    public SpriteLibraryAsset[] victimSprites;
     public GameObject PopMeter;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -58,7 +55,10 @@ public class Enemy_Spawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        GameObject victim = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
+        int random = Random.Range(0, victimSprites.Length);
+        spriteLibrary.spriteLibraryAsset = victimSprites[random];
         enemyCount++;
     }
 }
