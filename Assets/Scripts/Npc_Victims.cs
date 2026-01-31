@@ -33,6 +33,7 @@ public class Npc_Victims : MonoBehaviour
     private float randomnum;
     private Vector3 personaloffset;
     public bool isDead;
+    public bool hasBeenscanned;
     public float deadTimer;
     public Animator anim;
     Vector3 vel;
@@ -82,7 +83,16 @@ public class Npc_Victims : MonoBehaviour
             anim.SetBool("isWalking", false);
             anim.SetBool("isIdle", false);
             anim.SetBool("isDead", true);
-            return;
+            if (!hasBeenscanned)
+            {
+                deadTimer -= Time.deltaTime;
+
+                if (deadTimer <= 0f)
+                {
+                    Destroy(gameObject);
+                }
+            }
+         return;
         }
         vel = agent.velocity;
         anim.SetFloat("DirX", vel.x);
@@ -201,6 +211,5 @@ public class Npc_Victims : MonoBehaviour
         if (!isDead)
         { return; }
     }
-
 
 }

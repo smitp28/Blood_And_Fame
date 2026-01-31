@@ -1,67 +1,69 @@
-using JetBrains.Annotations;
-using NavMeshPlus.Extensions;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 public class FOV : MonoBehaviour
 {
     public GameObject paparazzi;
     public Mesh mesh;
     public Vector3 origin;
-    public Collider2D papacoll;
+
     public Collider2D playercoll;
     public Collider2D corpsecoll;
+
     public bool playervisible;
     public bool corpsevisible;
+
     public float lowkilldist = 2f;
     public float medkilldist = 4f;
     public float highkilldist = 6f;
+
     public float lowinsanity = 5f;
     public float medinsanity = 10f;
     public float highinsanity = 15f;
+
+    private bool corpseVisiblelastframe;
     private float scanTime = 1f;
-    public bool isCheckingcorpse = false;
-    public GameObject[] victim;
-    public bool corpsevis;
+    public bool isCheckingcorpse;
+
     private float timer;
-    public float angle;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     private void Start()
     {
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
-        MeshRenderer mr = GetComponent<MeshRenderer>();
         paparazzi = GameObject.FindWithTag("Paparazzi");
-        papacoll = paparazzi.GetComponent<Collider2D>();
-        GameObject player = GameObject.FindWithTag("Player");
-        playercoll = player.GetComponent<Collider2D>();
-        GameObject popularitymeter = GameObject.FindWithTag("PopularityMeter");
-        victim = GameObject.FindGameObjectsWithTag("victims");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        timer =+ Time.deltaTime;
-        if (timer > 0.25f)
+        if (playercoll == null)
         {
-            DeadVictim();
-            timer = 0f;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            { return; }
+            playercoll = player.GetComponent<Collider2D>();
+            if (playercoll == null)
+            { return; }
         }
+        timer += Time.deltaTime;
+
+        // RESET VISIBILITY EACH FRAME
         playervisible = false;
         corpsevisible = false;
+        corpsecoll = null;
+
         float fov = 90f;
         int rayCount = 90;
-        float angle = transform.parent.eulerAngles.z - fov/2f + 90f;
-        float angleIncrease = fov / rayCount;
         float viewDistance = 5f;
         int mask = ~LayerMask.GetMask("Paparazzi");
-        origin = transform.parent.position;
-        Vector3 vel = GetComponentInParent<Npc_Paparazzi>().agent.velocity;
 
-        Vector3[] vertices = new Vector3[rayCount + 1 + 1];
+        float currentAngle =
+            transform.parent.eulerAngles.z - fov / 2f + 90f;
+
+        float angleIncrease = fov / rayCount;
+        origin = transform.parent.position;
+
+        Vector3[] vertices = new Vector3[rayCount + 2];
         int[] triangles = new int[3 * rayCount];
         Vector2[] uv = new Vector2[vertices.Length];
 
@@ -69,106 +71,111 @@ public class FOV : MonoBehaviour
 
         int vertexIndex = 1;
         int triangleIndex = 0;
+
         for (int i = 0; i <= rayCount; i++)
         {
-            float angleRad = angle * Mathf.Deg2Rad;
-            Vector3 worlddir = new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
-            Vector3 worldend = origin + worlddir * viewDistance;
+            float angleRad = currentAngle * Mathf.Deg2Rad;
+            Vector3 dir = new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
 
-            RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, worlddir, viewDistance, mask);
-            if (raycastHit2D.collider == null)
+            Vector3 endPoint = origin + dir * viewDistance;
+            RaycastHit2D hit = Physics2D.Raycast(origin, dir, viewDistance, mask);
+
+            if (hit.collider != null)
             {
-                worldend = origin + worlddir * viewDistance;
-            }
-            else if (raycastHit2D.collider == playercoll && corpsecoll && corpsevisible == true)
-            {
-                playervisible = true;
-                corpsevis = true;
-                StartCoroutine(CheckCorpse());
-               
-                InsanityMeter.instance.ApplyInsanity(100);
-            }
-            else if (raycastHit2D.collider == playercoll)
-            {
-                playervisible = true;
-            }
-            else if (raycastHit2D.collider == corpsecoll && corpsevisible == true)
-            {
-                corpsevis = true;
-                if (!isCheckingcorpse)
+                endPoint = hit.point;
+
+                if (hit.collider == playercoll)
+                    playervisible = true;
+
+                if (hit.collider.CompareTag("victims"))
                 {
-                    StartCoroutine(CheckCorpse());
+                    Npc_Victims npc = hit.collider.GetComponent<Npc_Victims>();
+                    if (npc != null && npc.isDead)
+                    {
+                        corpsevisible = true;
+                        corpsecoll = hit.collider;
+                    }
                 }
             }
-            else
-            {
-                worldend = raycastHit2D.point;
-            }
-            vertices[vertexIndex] = transform.InverseTransformPoint(worldend);
+
+            vertices[vertexIndex] =
+                transform.InverseTransformPoint(endPoint);
 
             if (i > 0)
             {
-                triangles[triangleIndex + 0] = 0;
-                triangles[triangleIndex + 1] = vertexIndex - 1;
-                triangles[triangleIndex + 2] = vertexIndex;
-                triangleIndex += 3;
+                triangles[triangleIndex++] = 0;
+                triangles[triangleIndex++] = vertexIndex - 1;
+                triangles[triangleIndex++] = vertexIndex;
             }
+
             vertexIndex++;
-            angle -= angleIncrease;
+            currentAngle -= angleIncrease;
         }
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
         mesh.uv = uv;
-
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
+
+        if (!corpsevisible)
+        {
+            corpseVisiblelastframe = false;
+        }
+
+        bool corpseJustbecamevisible = corpsevisible && !corpseVisiblelastframe;
+
+        // ================= FINAL DECISION =================
+
+        // CASE 1: Player + corpse seen → GAME OVER
+        if (playervisible && corpsevisible)
+        {
+            InsanityMeter.instance.Current = 100f;
+            return;
+        }
+
+        // CASE 2: Only corpse seen → distance insanity
+        if (corpseJustbecamevisible && !playervisible && !isCheckingcorpse)
+        {
+            StartCoroutine(CheckCorpse(corpsecoll));
+        }
+
+        corpseVisiblelastframe = corpsevisible;
     }
 
-    public void SetOrigin(Vector3 origin)
-    { 
-        this.origin = origin;
-    }
-
-    IEnumerator CheckCorpse()
+    IEnumerator CheckCorpse(Collider2D corpse)
     {
-        if (corpsevisible == true)
+        if (corpse == null)
         {
-            isCheckingcorpse = true;
-            GetComponentInParent<Npc_Paparazzi>().agent.isStopped = true;
-            yield return new WaitForSeconds(scanTime);
-            if ((Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < lowkilldist) && corpsevis == true)
-            {
-                InsanityMeter.instance.ApplyInsanity(highinsanity);
-            }
-            else if ((Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < medkilldist) && corpsevis == true)
-            {
-                InsanityMeter.instance.ApplyInsanity(medinsanity);
-            }
-            else if ((Vector2.Distance(playercoll.bounds.center, corpsecoll.bounds.center) < highkilldist) && corpsevis == true)
-            {
-                InsanityMeter.instance.ApplyInsanity(lowinsanity);
-            }
-            GetComponentInParent<Npc_Paparazzi>().agent.isStopped = false;
             isCheckingcorpse = false;
+            yield break;
         }
-        
-    }
-
-    public void DeadVictim()
-    { 
-        corpsevisible = false;
-        victim = GameObject.FindGameObjectsWithTag("victims");
-        foreach (GameObject v in victim)
+        Npc_Victims npc = corpse.GetComponent<Npc_Victims>();
+        if (npc == null || npc.hasBeenscanned)
         {
-            Npc_Victims npc = v.GetComponent<Npc_Victims>();
-            if (npc != null && npc.isDead)
-            { 
-                corpsevisible = true;
-                corpsecoll = v.GetComponent<Collider2D>();
-                break;
-            }
-            
+            yield break;
         }
+        npc.hasBeenscanned = true;
+        isCheckingcorpse = true;
+        GetComponentInParent<Npc_Paparazzi>().agent.isStopped = true;
+
+        yield return new WaitForSeconds(scanTime);
+
+        float dist = Vector2.Distance(
+            playercoll.bounds.center,
+            corpse.bounds.center
+        );
+
+        if (dist < lowkilldist)
+            InsanityMeter.instance.ApplyInsanity(highinsanity);
+        else if (dist < medkilldist)
+            InsanityMeter.instance.ApplyInsanity(medinsanity);
+        else
+            InsanityMeter.instance.ApplyInsanity(lowinsanity);
+
+        GetComponentInParent<Npc_Paparazzi>().agent.isStopped = false;
+        isCheckingcorpse = false;
+
+        Destroy(corpse.gameObject);
     }
 }

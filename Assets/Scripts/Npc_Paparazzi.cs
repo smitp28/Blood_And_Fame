@@ -70,7 +70,6 @@ public class Npc_Paparazzi : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        fieldOfView.SetOrigin(transform.position);
         vel = agent.velocity;
         //anim.SetFloat("DirX", vel.x);
         //anim.SetFloat("DirY", vel.y);
