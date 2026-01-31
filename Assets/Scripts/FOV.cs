@@ -19,6 +19,7 @@ public class FOV : MonoBehaviour
     public float medkilldist = 4f;
     public float highkilldist = 6f;
     public float lowinsanity = 5f;
+    public GameObject gameOverPanel;
     public float medinsanity = 10f;
     public float highinsanity = 15f;
     private float scanTime = 1f;
@@ -26,6 +27,7 @@ public class FOV : MonoBehaviour
     public GameObject[] victim;
     public bool corpsevis;
     private float timer;
+    public float angle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -57,6 +59,7 @@ public class FOV : MonoBehaviour
         float viewDistance = 5f;
         int mask = ~LayerMask.GetMask("Paparazzi");
         origin = transform.parent.position;
+        Vector3 vel = GetComponentInParent<Npc_Paparazzi>().agent.velocity;
 
         Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         int[] triangles = new int[3 * rayCount];
@@ -77,11 +80,11 @@ public class FOV : MonoBehaviour
             {
                 worldend = origin + worlddir * viewDistance;
             }
-            else if (raycastHit2D.collider == playercoll)
+            if (raycastHit2D.collider == playercoll)
             {
                 playervisible = true;
             }
-            else if (raycastHit2D.collider == corpsecoll && corpsevis == true)
+            if (raycastHit2D.collider == corpsecoll && corpsevis == true)
             { 
                 corpsevisible = true;
                 if (!isCheckingcorpse)
@@ -123,6 +126,12 @@ public class FOV : MonoBehaviour
     {
         if (corpsevisible == true)
         {
+            if (playervisible)
+            {
+                //Game Over
+                gameOverPanel.SetActive(true);
+                //DisplayGameOverscreen
+            }
             isCheckingcorpse = true;
             GetComponentInParent<Npc_Paparazzi>().agent.isStopped = true;
             yield return new WaitForSeconds(scanTime);

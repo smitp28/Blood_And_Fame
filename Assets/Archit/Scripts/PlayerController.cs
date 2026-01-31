@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,7 +12,9 @@ public class PlayerController : MonoBehaviour
     public PlayerStates currentState;
     public float invisDuration;
     private Color spriteColor;
-    [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float nightSpeed = 10f;
+    private float currentSpeed;
     public Vector2 moveInput;
     public Vector2 lastMoveInput;
     public LayerMask victims;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
         currentState = PlayerStates.Idle;
         spriteColor = playerSprite.color;
         canMove = true;
+        currentSpeed = moveSpeed;
     }
     private void Update()
     {
@@ -36,20 +40,48 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerStates.Walking:
                 canMove = true;
-                rb.linearVelocity = moveSpeed * moveInput;
+                rb.linearVelocity = currentSpeed * moveInput;
                 break;
             case PlayerStates.Attacking:
                 rb.linearVelocity = Vector2.zero;
                 canMove = false;
                 break;
         }
+
+
     }
+    private void FixedUpdate()
+{
+    if (currentState == PlayerStates.Walking)
+    {
+        rb.linearVelocity = moveInput.normalized * currentSpeed;
+    }
+    else
+    {
+        rb.linearVelocity = Vector2.zero;
+    }
+    
+
+}
+
     public void Invis(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
             StartCoroutine(ActivateInvis());
         }
+    }
+
+    public void EnableNightSpeed()
+    { 
+         currentSpeed = nightSpeed;
+         
+    }
+
+    public void DisableNightSpeed()
+    {
+       currentSpeed = moveSpeed;
+       
     }
 
     private IEnumerator ActivateInvis()
@@ -61,6 +93,7 @@ public class PlayerController : MonoBehaviour
         tmpColor.a = 1f;
         playerSprite.color = tmpColor;
     }
+
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -88,7 +121,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetTrigger("Attack");
             StartCoroutine(Kill());
-            Debug.Log("Attacking");
+            UnityEngine.Debug.Log("Attacking");
         }
     }
 

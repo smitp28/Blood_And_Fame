@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c57da2a95a4ba46ad0a10f3a651eea, type: 3}
+  m_Name: Worker
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogues
+  npcName: Rich Man
+  npcSprite: {fileID: -3284978671773823301, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
+  dialogueLines:
+  - Watch it! Can't you see I'm working here?
+  - "I\u2019ve lostLost my heavy iron wrench. Can't finish the shift without it.a
+    gold signet ring. It\u2019s worth more than your life\u2019s wages."
+  - You seen it? Keep an eye out while you're passing through, yeah?
+  - Right then. I'll stay here.
+  - Right. Typical. Everyone's too busy to lend a hand.
+  - That's the one. Solid iron. Cheers, mateyou saved my skin today.
+  typingSpeed: 0.05
+  autoProgressLines: 000001000000
+  autoProgressDelay: 1.5
+  endDialogueLines: 000000010101
+  dialogueChoices:
+  - dialogueIndex: 3
+    nextDialogueIndex: 0300000004000000
+    choices:
+    - Yes
+    - No
+    givesQuest: 0100
+  questInProgressIndex: 3
+  questCompletedIndex: 5
+  quest: {fileID: 0}

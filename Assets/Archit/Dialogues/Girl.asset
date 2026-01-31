@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c57da2a95a4ba46ad0a10f3a651eea, type: 3}
+  m_Name: Girl
+  m_EditorClassIdentifier: Assembly-CSharp::Dialogues
+  npcName: Girl
+  npcSprite: {fileID: 1189779305756619486, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
+  dialogueLines:
+  - "Oh! Um... hello. I\u2019m not supposed to talk to people I don't know."
+  - But I lost my silver locket... it has a picture of my mum inside.
+  - If you see it in the grass... could you maybe bring it back?
+  - "Really? Thank you! I\u2019ll wait here."
+  - "Oh... okay. I\u2019ll keep looking by myself then."
+  - You found it! Thank you so, so much! I can go home now!
+  typingSpeed: 0.05
+  autoProgressLines: 000001000000
+  autoProgressDelay: 1.5
+  endDialogueLines: 000000010101
+  dialogueChoices:
+  - dialogueIndex: 2
+    nextDialogueIndex: 0300000004000000
+    choices:
+    - Yes
+    - No
+    givesQuest: 0100
+  questInProgressIndex: 3
+  questCompletedIndex: 5
+  quest: {fileID: 0}
