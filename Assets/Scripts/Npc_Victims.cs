@@ -58,6 +58,9 @@ public class Npc_Victims : MonoBehaviour
         if (isDead)
         {
             agent.velocity = Vector3.zero;
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isIdle", false);
+            anim.SetBool("isDead", true);
             return;
         }
         vel = agent.velocity;
