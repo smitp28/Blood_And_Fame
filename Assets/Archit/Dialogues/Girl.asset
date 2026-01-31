@@ -10,24 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64c57da2a95a4ba46ad0a10f3a651eea, type: 3}
-  m_Name: OldMan
+  m_Name: Girl
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
-  npcName: Old Man
-  npcSprite: {fileID: 1820790034032967366, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
+  npcName: Girl
+  npcSprite: {fileID: 1189779305756619486, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
-  - "Oh, hello. I didn\u2019t see you there, my eyes aren\u2019t what they used to
-    be."
-  - "I\u2019ve dropped my father's old pocket watch. It\u2019s brass and very worn."
-  - You have a youthful stride. Mind looking around for it?
-  - "Bless you. I\u2019ll be resting right here."
-  - "I understand. It\u2019s a lot to ask of a stranger. Safe travels."
-  - My heart... you found it! Thank you for being kind to an old soul.
+  - "Oh! Um... hello. I\u2019m not supposed to talk to people I don't know."
+  - But I lost my silver locket... it has a picture of my mum inside.
+  - If you see it in the grass... could you maybe bring it back?
+  - "Really? Thank you! I\u2019ll wait here."
+  - "Oh... okay. I\u2019ll keep looking by myself then."
+  - You found it! Thank you so, so much! I can go home now!
   typingSpeed: 0.05
   autoProgressLines: 000001000000
   autoProgressDelay: 1.5
   endDialogueLines: 000000010101
   dialogueChoices:
-  - dialogueIndex: 1
+  - dialogueIndex: 2
     nextDialogueIndex: 0300000004000000
     choices:
     - Yes
@@ -35,4 +34,4 @@ MonoBehaviour:
     givesQuest: 0100
   questInProgressIndex: 3
   questCompletedIndex: 5
-  quest: {fileID: 11400000, guid: 1b657d3da8305594183e0d91841c249d, type: 2}
+  quest: {fileID: 0}
