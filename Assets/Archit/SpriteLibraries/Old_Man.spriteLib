@@ -105,6 +105,17 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: -6249355941540749095, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 12
+  - m_Name: Dead
+    m_Hash: 219670042
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: characters_Dead
+      m_Hash: 513782830
+      m_Sprite: {fileID: -1208116938761623920, guid: 7d8243ec860578644969ed062581ddd5, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1208116938761623920, guid: 7d8243ec860578644969ed062581ddd5, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 639047291742356878
+  m_ModificationHash: 639054590736709279
   m_Version: 1
