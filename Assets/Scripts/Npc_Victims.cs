@@ -24,6 +24,7 @@ public class Npc_Victims : MonoBehaviour
     private float randomnum;
     private Vector3 personaloffset;
     public bool isDead;
+    public float deadTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Start()
     {
@@ -45,6 +46,7 @@ public class Npc_Victims : MonoBehaviour
         StartCoroutine(WaitAndMove());
         personaloffset = Random.insideUnitCircle.normalized * Random.Range(0.2f, 1f);
         isDead = false;
+        deadTimer = 30f;
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class Npc_Victims : MonoBehaviour
     {
         if (isDead)
         {
+            agent.velocity = Vector3.zero;
             return;
         }
         Vector3 vel = agent.velocity;
@@ -117,5 +120,14 @@ public class Npc_Victims : MonoBehaviour
         targetpos = marker.transform;
 
     }
+
+    public void Death()
+    {
+        if (!isDead)
+        { return; }
+
+    
+    }
+
 
 }

@@ -3090,7 +3090,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackPoint: {fileID: 2069736410}
-  attackRange: 2
+  attackRange: 5
   attackTime: 1
   canMove: 0
 --- !u!212 &1786149617
