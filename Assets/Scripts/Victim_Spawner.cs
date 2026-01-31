@@ -1,0 +1,63 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine.U2D.Animation;
+public class Victim_Spawner : MonoBehaviour
+{
+    public int enemyCount;
+    public GameObject _enemyPrefab;
+    public SpriteLibraryAsset[] victimSprites;
+    public GameObject PopMeter;
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Paparazzi");
+        enemyCount = enemies.Length;
+        if (PopularityMeter.instance.Current > 100f)
+        {
+            if (enemyCount <= 10)
+            {
+                SpawnEnemy();
+            }
+        }
+        else if (PopularityMeter.instance.Current > 80f)
+        {
+            if (enemyCount <= 8)
+            {
+                SpawnEnemy();
+            }
+        }
+        else if (PopularityMeter.instance.Current > 60f)
+        {
+            if (enemyCount <= 6)
+            {
+                SpawnEnemy();
+            }
+        }
+        else if (PopularityMeter.instance.Current > 40f)
+        {
+            if (enemyCount <= 4)
+            {
+                SpawnEnemy();
+            }
+        }
+        else if (PopularityMeter.instance.Current > 20f)
+        {
+            if (enemyCount <= 2)
+            {
+                SpawnEnemy();
+            }
+        }
+    }
+
+    private void SpawnEnemy()
+    {
+        GameObject victim = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
+        int random = Random.Range(0, victimSprites.Length);
+        spriteLibrary.spriteLibraryAsset = victimSprites[random];
+        enemyCount++;
+    }
+}
