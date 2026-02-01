@@ -1157,6 +1157,7 @@ MonoBehaviour:
   currentState: 0
   invisDuration: 2
   moveSpeed: 5
+  nightSpeed: 10
   moveInput: {x: 0, y: 0}
   lastMoveInput: {x: 0, y: 0}
   victims:
@@ -1168,6 +1169,7 @@ MonoBehaviour:
   canMove: 0
   eatingBones: {fileID: 8300000, guid: 123d637a1359262458f501f1eee8ef3b, type: 3}
   killingScreen: {fileID: 0}
+  victim: {fileID: 0}
 --- !u!212 &636671163
 SpriteRenderer:
   serializedVersion: 2
@@ -2360,7 +2362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1692561840
 RectTransform:
   m_ObjectHideFlags: 0

@@ -12,8 +12,9 @@ public class InsanityMeter : MonoBehaviour
     public float rate;
     public GameObject gameOverPanel;
     private CinemachineImpulseSource impulseSource;
-     public float shakeAt80Interval = 2f;
+    public float shakeAt80Interval = 2f;
     public float shakeAt90Interval = 1f;
+    private float insanityPercent;
 
     private float shakeTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -47,8 +48,8 @@ public class InsanityMeter : MonoBehaviour
 
     void HealthbarFiller()
     {
-        float ratio = Current / Max;
-        insanityBar.fillAmount = Mathf.Lerp(insanityBar.fillAmount, ratio, lerpspeed);
+        insanityPercent = Current / Max;
+        insanityBar.fillAmount = Mathf.Lerp(insanityBar.fillAmount, insanityPercent, lerpspeed);
     }
 
     void ColourChanger()
@@ -59,8 +60,6 @@ public class InsanityMeter : MonoBehaviour
 
     void HandleCameraShake()
     {
-        float insanityPercent = Current / Max;
-
         // Below 80% = no shake
         if (insanityPercent < 0.8f)
         {
