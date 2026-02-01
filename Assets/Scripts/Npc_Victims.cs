@@ -71,7 +71,7 @@ public class Npc_Victims : MonoBehaviour
         StartCoroutine(WaitAndMove());
         personaloffset = Random.insideUnitCircle.normalized * Random.Range(0.2f, 1f);
         isDead = false;
-        deadTimer = 30f;    
+        deadTimer = 30f;
     }
 
     // Update is called once per frame

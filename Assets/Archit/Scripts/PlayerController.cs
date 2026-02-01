@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip eatingBones;
     public GameObject killingScreen;
     public GameObject victim;
+    private bool isKilling = false;
     private void Start()
     {
         currentState = PlayerStates.Idle;
@@ -38,9 +39,9 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerStates.Idle:
                 rb.linearVelocity = Vector2.zero;
+                canMove = true;
                 break;
             case PlayerStates.Walking:
-                canMove = true;
                 rb.linearVelocity = currentSpeed * moveInput;
                 break;
             case PlayerStates.Attacking:
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
         victim = GameObject.FindGameObjectWithTag("victims");
     }
     private void FixedUpdate()
-{
+    {
     if (currentState == PlayerStates.Walking)
     {
         rb.linearVelocity = moveInput.normalized * currentSpeed;
@@ -62,8 +63,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector2.zero;
     }
     
-
-}
+    }
 
     public void Invis(InputAction.CallbackContext context)
     {
@@ -118,11 +118,9 @@ public class PlayerController : MonoBehaviour
 
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isKilling)
         {
-            animator.SetTrigger("Attack");
             StartCoroutine(Kill());
-            UnityEngine.Debug.Log("Attacking");
         }
     }
 
@@ -141,20 +139,23 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Kill()
     {
         Collider2D Victim = Physics2D.OverlapCircle(attackPoint.position, attackRange, victims);
-        if (Victim != null && victim.GetComponent<Npc_Victims>().isDead==false)
+        if (Victim != null && Victim.GetComponent<Npc_Victims>().isDead==false)
         { 
             Victim.GetComponent<Npc_Victims>().isDead = true;
+
             InsanityMeter.instance.ApplyInsanity(-15f);
+
             Victim.GetComponent<Npc_Victims>().anim.SetBool("isDead", true);
             AudioManager.instance.PlaySoundFx(eatingBones, transform, 1f);
             killingScreen.SetActive(true);
             killingScreen.GetComponentInChildren<Animator>().Play("KillingAnimation");
             ChangeState(PlayerStates.Attacking);
+            isKilling = true;
             yield return new WaitForSeconds(attackTime);
             killingScreen.SetActive(false);
-            ChangeState(PlayerStates.Walking);
+            isKilling = false;
+            ChangeState(PlayerStates.Idle);
         }
-        
     }
 }
 public enum PlayerStates { Idle, Walking, Attacking, Invisible};

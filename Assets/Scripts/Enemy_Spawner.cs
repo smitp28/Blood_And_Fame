@@ -56,9 +56,12 @@ public class Enemy_Spawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject victim = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
-        SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
-        int random = Random.Range(0, victimSprites.Length);
-        spriteLibrary.spriteLibraryAsset = victimSprites[random];
         enemyCount++;
+        if (victim.GetComponent<SpriteLibrary>() != null)
+        {
+            SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
+            int random = Random.Range(0, victimSprites.Length);
+            spriteLibrary.spriteLibraryAsset = victimSprites[random];
+        }
     }
 }

@@ -16,11 +16,13 @@ public class PauseController : MonoBehaviour
     {
         Time.timeScale = 0f;
         playerInput.SwitchCurrentActionMap("UI");
+        Debug.Log("UI action map");
     }
 
     public void UnPause()
     {
         Time.timeScale = 1f;
         playerInput.SwitchCurrentActionMap("Player");
+        Debug.Log("Player action map");
     }
 }
