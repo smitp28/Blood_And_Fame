@@ -18,15 +18,15 @@ MonoBehaviour:
   - Hey! You! Don't move! You might step on something!
   - My oak slingshot is gone! I dropped it while I was running.
   - You're tall, so you can see better. Help me find it?
-  - wesome! I'll check the bushes, you check the path!
+  - Awesome! I'll check the bushes, you check the path!
   - Fine! I'll find it myself and I won't share my snacks!
   - My 'Defender'! You found it! Thanks A Lot
   typingSpeed: 0.05
-  autoProgressLines: 000001000000
-  autoProgressDelay: 1.5
+  autoProgressLines: 000101010101
+  autoProgressDelay: 2.5
   endDialogueLines: 000000010101
   dialogueChoices:
-  - dialogueIndex: 3
+  - dialogueIndex: 2
     nextDialogueIndex: 0300000004000000
     choices:
     - Yes
@@ -34,4 +34,4 @@ MonoBehaviour:
     givesQuest: 0100
   questInProgressIndex: 3
   questCompletedIndex: 5
-  quest: {fileID: 0}
+  quest: {fileID: 11400000, guid: 6251eeef9e4218f4ebc41002dcb5fa76, type: 2}

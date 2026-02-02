@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class pickup : MonoBehaviour
 {
-    public string itemID="Wallet123";
-    public QuestUI questUI;
+    public string itemID;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Is this done?");

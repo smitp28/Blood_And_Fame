@@ -8,7 +8,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
     public Dialogues dialogueData;
     private AudioClip buttonSfx;
     private DialogueController dialogueUI;
-    public Button closeButton;
+    private Button closeButton;
     private bool isTyping;
     private int dialogueIndex;
     private bool isDialogueActive;
@@ -18,6 +18,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
     {
         dialogueUI = DialogueController.instance;
         buttonSfx = DialogueController.instance.buttonClickSfx;
+        closeButton = DialogueController.instance.closeButton;
     }
     public bool CanInteract()
     {

@@ -23,11 +23,11 @@ MonoBehaviour:
   - "I understand. It\u2019s a lot to ask of a stranger. Safe travels."
   - My heart... you found it! Thank you for being kind to an old soul.
   typingSpeed: 0.05
-  autoProgressLines: 000001000000
-  autoProgressDelay: 1.5
+  autoProgressLines: 000101010000
+  autoProgressDelay: 2.5
   endDialogueLines: 000000010101
   dialogueChoices:
-  - dialogueIndex: 1
+  - dialogueIndex: 2
     nextDialogueIndex: 0300000004000000
     choices:
     - Yes
@@ -35,4 +35,4 @@ MonoBehaviour:
     givesQuest: 0100
   questInProgressIndex: 3
   questCompletedIndex: 5
-  quest: {fileID: 0}
+  quest: {fileID: 11400000, guid: 1b657d3da8305594183e0d91841c249d, type: 2}

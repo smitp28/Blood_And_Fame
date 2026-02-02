@@ -10,6 +10,7 @@ public class DialogueController : MonoBehaviour
     public Image potraitImage;
     public GameObject dialoguePanel;
     public Transform choicePanel;
+    public Button closeButton;
     public GameObject choiceButtonPrefab;
     public AudioClip buttonClickSfx;
 
