@@ -23,7 +23,7 @@ MonoBehaviour:
   - My 'Defender'! You found it! Thanks A Lot
   typingSpeed: 0.05
   autoProgressLines: 000101010101
-  autoProgressDelay: 2.5
+  autoProgressDelay: 1.5
   endDialogueLines: 000000010101
   dialogueChoices:
   - dialogueIndex: 2

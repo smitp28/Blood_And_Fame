@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Worker
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   npcName: Rich Man
-  npcSprite: {fileID: -3284978671773823301, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
+  npcSprite: {fileID: 7744072722613937420, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - Watch it! Can't you see I'm working here?
   - "I\u2019ve lostLost my heavy iron wrench. Can't finish the shift without it.a
@@ -23,8 +23,8 @@ MonoBehaviour:
   - Right. Typical. Everyone's too busy to lend a hand.
   - That's the one. Solid iron. Cheers, mateyou saved my skin today.
   typingSpeed: 0.05
-  autoProgressLines: 000101010000
-  autoProgressDelay: 2.5
+  autoProgressLines: 000101010101
+  autoProgressDelay: 1.5
   endDialogueLines: 000000010101
   dialogueChoices:
   - dialogueIndex: 2

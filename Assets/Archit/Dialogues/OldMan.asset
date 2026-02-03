@@ -20,11 +20,11 @@ MonoBehaviour:
   - "I\u2019ve dropped my father's old pocket watch. It\u2019s brass and very worn."
   - You have a youthful stride. Mind looking around for it?
   - "Bless you. I\u2019ll be resting right here."
-  - "I understand. It\u2019s a lot to ask of a stranger. Safe travels."
+  - "I understand. It\u2019s a lot to ask of a stranger."
   - My heart... you found it! Thank you for being kind to an old soul.
   typingSpeed: 0.05
-  autoProgressLines: 000101010000
-  autoProgressDelay: 2.5
+  autoProgressLines: 000101010101
+  autoProgressDelay: 1.5
   endDialogueLines: 000000010101
   dialogueChoices:
   - dialogueIndex: 2

@@ -20,11 +20,10 @@ MonoBehaviour:
   - "Find it for me. I\u2019ll see you're compensated for the trouble."
   - "Naturally. Don\u2019t be all day about it."
   - Tch. Utterly useless. Out of my sight, then.
-  - Ah, there it is. Scrub the dirt off it before you hand it over. Here is your
-    pittance.
+  - Ah, there it is. Scrub the dirt off it before you hand it over.
   typingSpeed: 0.05
-  autoProgressLines: 000101010000
-  autoProgressDelay: 2.5
+  autoProgressLines: 000101010101
+  autoProgressDelay: 1.5
   endDialogueLines: 000000010101
   dialogueChoices:
   - dialogueIndex: 2

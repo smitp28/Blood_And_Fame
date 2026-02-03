@@ -44,6 +44,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
     public void StartDialogue()
     {
         SyncQuestState();
+        
         if(questState == QuestState.NotStarted) {dialogueIndex = 0;}
         if(questState == QuestState.InProgress) {dialogueIndex = dialogueData.questInProgressIndex;}
         if(questState == QuestState.Completed) {dialogueIndex = dialogueData.questCompletedIndex;}
@@ -73,6 +74,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
         if (QuestController.instance.completedQuestIDs.Contains(questID))
         {
             questState = QuestState.Completed;
+            return;
         }
         var active = QuestController.instance.activeQuest;
         if (active != null && active.QuestID == questID)
@@ -80,6 +82,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
             if (active.IsCompleted)
             {
                 questState = QuestState.Completed;
+                Debug.Log("Quest completed added to completed IDs");
                 QuestController.instance.OnQuestCompleted();  
             }
             else
