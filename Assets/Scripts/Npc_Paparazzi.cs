@@ -71,8 +71,7 @@ public class Npc_Paparazzi : MonoBehaviour
     public void Update()
     {
         vel = agent.velocity;
-        //anim.SetFloat("DirX", vel.x);
-        //anim.SetFloat("DirY", vel.y);
+
         if (vel.sqrMagnitude > 0.01f)
         {
             float angle = Mathf.Atan2(vel.y, vel.x) * Mathf.Rad2Deg;
@@ -87,16 +86,10 @@ public class Npc_Paparazzi : MonoBehaviour
             yield return new WaitUntil(() => fieldOfView.isCheckingcorpse == false);
             PickNewMarker();
             agent.isStopped = false;
-            //anim.SetBool("isIdle", false);
-            //anim.SetBool("isWalking", true);
             agent.SetDestination(targetpos.position + personaloffset);
             yield return new WaitUntil(() => !agent.pathPending || agent.hasPath);
             yield return new WaitUntil(() => agent.remainingDistance <= agent.stoppingDistance && agent.velocity.sqrMagnitude < 0.01f);
-            //anim.SetFloat("LastDirX", vel.x);
-            //anim.SetFloat("LastDirY", vel.y);
             agent.isStopped = true;
-            //anim.SetBool("isIdle", true);
-            //anim.SetBool("isWalking", false);
             yield return new WaitForSeconds(cooldown);
         }
     }
