@@ -16,11 +16,13 @@ MonoBehaviour:
   npcSprite: {fileID: 1189779305756619486, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - "Oh! Um... hello. I\u2019m not supposed to talk to people I don't know."
-  - But I lost my silver locket... it has a picture of my mum inside.
-  - If you see it in the grass... could you maybe bring it back?
-  - "Really? Thank you! I\u2019ll wait here."
-  - "Oh... okay. I\u2019ll keep looking by myself then."
-  - You found it! Thank you so, so much! I can go home now!
+  - "But I can\u2019t find my dog, Biscuit. He got scared and ran off into the woods."
+  - If you see a small, scruffy dog nearby... could you maybe bring him back?
+  - "Really? Thank you! He\u2019s a bit shy with strangers at first, but he\u2019s
+    very friendly once he knows you're nice!"
+  - "Oh... okay. I\u2019ll keep calling for him myself then. I hope he isn't scared."
+  - "Biscuit! You found him! See, I told you he\u2019d like you. Thank you so, so
+    much!"
   typingSpeed: 0.05
   autoProgressLines: 000001000000
   autoProgressDelay: 1.5
@@ -34,4 +36,4 @@ MonoBehaviour:
     givesQuest: 0100
   questInProgressIndex: 3
   questCompletedIndex: 5
-  quest: {fileID: 0}
+  quest: {fileID: 11400000, guid: 12c31dfa3b804e945a1a0014ae2882ec, type: 2}
