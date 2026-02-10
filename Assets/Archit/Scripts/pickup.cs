@@ -20,8 +20,8 @@ public class pickup : MonoBehaviour
             {
                 if(quest.objectives[i].objectiveID == itemID)
                 {
-                    foundObjective = true;  
-                    quest.objectives[i].currentAmount++;
+                    foundObjective = true;
+                    QuestController.instance.UpdateObjectiveProgress(i, 1);
                 }
             }
             if (foundObjective)

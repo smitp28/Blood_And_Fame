@@ -31,7 +31,7 @@ public class QuestObjective
 
     public bool IsCompleted => currentAmount >= requiredAmount;
 }
-public enum ObjectiveType { CollectItem, KillVictims, ReachLocation, TalkNPC, Custom}
+public enum ObjectiveType { CollectItem, FindLiving, KillVictims, ReachLocation, TalkNPC, Custom}
 
 [System.Serializable]
 public class QuestProgress

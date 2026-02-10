@@ -57,12 +57,32 @@ public class QuestController : MonoBehaviour
     public void OnQuestCompleted()
     {
         if (activeQuest == null) return;
+        //if livng thing find quests then teleport it to the owner after turning in the quest
+        foreach(QuestObjective objective in activeQuest.objectives)
+        {
+            if(objective.type == ObjectiveType.FindLiving)
+            {
 
+            }
+        }
         completedQuestIDs.Add(activeQuest.QuestID);
         questUI.ClearObjectives(questUI.questPanel.transform.Find("QuestName").GetComponent<TMP_Text>(), questUI.questPanel.transform.Find("ObjectiveList").GetComponent<Transform>());
         AudioManager.instance.PlaySoundFx(questCompleted_sfx, transform, 1f);
         Debug.Log("Quest Finished: " + activeQuest.quest.questName);
-
         activeQuest = null;
+    }
+    public bool CheckBeforeObjective(int objectiveIndex)
+    {
+        for(int i=0; i<objectiveIndex; i++)
+        {
+            if (!activeQuest.objectives[i].IsCompleted) return false;
+        }
+        return true;
+    }
+
+    public void UpdateObjectiveProgress(int objectiveIndex, int amount)
+    {
+        if (activeQuest.objectives[objectiveIndex].currentAmount >= activeQuest.objectives[objectiveIndex].requiredAmount) return;
+        activeQuest.objectives[objectiveIndex].currentAmount += amount;
     }
 }

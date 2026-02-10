@@ -11,6 +11,7 @@ public class Rabbit : MonoBehaviour, IInteractable
     public float runTime=2f;
     public Transform ownerTrans;
     public int counter = 1;
+    public string dogID = "dog123";
     public NavMeshAgent myNavAgent;
     Vector2 randomDir;
 
@@ -33,6 +34,25 @@ public class Rabbit : MonoBehaviour, IInteractable
     {
         if(counter >= 6)
         {
+            if (QuestController.instance.activeQuest == null)
+            {
+                Debug.Log("No quest active, can't pick up wallet logic-wise.");
+                return;
+            }
+            QuestProgress quest = QuestController.instance.activeQuest;
+            bool foundObjective = false;
+            for (int i = 0; i < quest.objectives.Count; i++)
+            {
+                if (quest.objectives[i].objectiveID == dogID && quest.objectives[i].currentAmount < quest.objectives[i].requiredAmount)
+                {
+                    foundObjective = true;
+                    QuestController.instance.UpdateObjectiveProgress(i, 1);
+                }
+            }
+            if (foundObjective)
+            {
+                QuestController.instance.UpdateUI();
+            }
             return;
         }
         RunAway();
@@ -41,7 +61,7 @@ public class Rabbit : MonoBehaviour, IInteractable
 
     private void FixedUpdate()
     {
-        if (counter >= 6) {
+        if (counter > 6) {
             myNavAgent.SetDestination(ownerTrans.position);
             myNavAgent.stoppingDistance = 2f;
         }
@@ -62,17 +82,4 @@ public class Rabbit : MonoBehaviour, IInteractable
     {
         myNavAgent.SetDestination(RandomNavmeshLocation(10f));
     }
-    //IEnumerator RunAway()
-    //{
-    //    float randomX = Random.value;
-    //    float randomY = Random.value;
-    //    randomDir = new Vector2(randomX, randomY);
-    //    rb.linearVelocity = randomDir * moveSpeed;
-    //    yield return new WaitForSeconds(runTime);
-    //    rb.linearVelocity = Vector2.zero;
-    //}
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    StopCoroutine(RunAway());
-    //}
 }
