@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Boy
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   npcName: Boy
+  npcID: 
   npcSprite: {fileID: -517894308114096243, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - Hey! You! Don't move! You might step on something!

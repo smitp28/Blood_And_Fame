@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class NPC_Script : MonoBehaviour, IInteractable
 {
     public Dialogues dialogueData;
-    public string npcID;
     private AudioClip buttonSfx;
     private DialogueController dialogueUI;
     private Button closeButton;
@@ -28,13 +27,13 @@ public class NPC_Script : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (QuestController.instance.activeQuest != null && npcID != null)
+        if (QuestController.instance.activeQuest != null && dialogueData.npcID != null)
         {
             QuestProgress active = QuestController.instance.activeQuest;
             for(int i=0; i< active.objectives.Count; i++)
             {
                 QuestObjective objective = active.objectives[i];
-                if (objective.objectiveID == npcID){
+                if (objective.objectiveID == dialogueData.npcID){
                     if (QuestController.instance.CheckBeforeObjective(i))
                     {
                         QuestController.instance.UpdateObjectiveProgress(i, 1);
@@ -203,5 +202,17 @@ public class NPC_Script : MonoBehaviour, IInteractable
         dialogueUI.ShowDialogueUI(false);
         isDialogueActive = false;
         PauseController.instance.UnPause();
+    }
+
+    private void OnEnable()
+    {
+        if(dialogueData.npcID == null) { return; }
+        NPC_Registry.Register(dialogueData.npcID, this.transform);
+    }
+
+    private void OnDisable()
+    {
+        if (dialogueData.npcID == null) { return; }
+        NPC_Registry.Unregister(dialogueData.npcID);
     }
 }

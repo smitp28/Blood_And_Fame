@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9382216283a7ecd46aa22f14dac7fa58, type: 3}
   m_Name: FindDog
   m_EditorClassIdentifier: Assembly-CSharp::Quest
-  questID: Find Dog3ac8565c-3963-4cc9-8bb6-682389cf7cec
-  questName: Find Dog
+  questID: Find Dog!cbe9529b-7043-44fd-b7d2-5e7677969a09
+  questName: Find Dog!
   description: 
   objectives:
   - objectiveID: dog123

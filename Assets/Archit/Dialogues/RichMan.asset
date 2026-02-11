@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RichMan
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   npcName: Rich Man
+  npcID: 
   npcSprite: {fileID: -3284978671773823301, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - "Halt! You look like you\u2019ve nothing better to do than wander about."

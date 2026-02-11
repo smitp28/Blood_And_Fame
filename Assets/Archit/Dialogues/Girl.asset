@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Girl
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   npcName: Girl
+  npcID: dogOwnerGirl123
   npcSprite: {fileID: 1189779305756619486, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - "Oh! Um... hello. I\u2019m not supposed to talk to people I don't know."

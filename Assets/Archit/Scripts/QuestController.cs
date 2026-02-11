@@ -57,13 +57,25 @@ public class QuestController : MonoBehaviour
     public void OnQuestCompleted()
     {
         if (activeQuest == null) return;
-        //if livng thing find quests then teleport it to the owner after turning in the quest
-        foreach(QuestObjective objective in activeQuest.objectives)
-        {
-            if(objective.type == ObjectiveType.FindLiving)
-            {
+        Rabbit livingTarget = null;
+        Transform ownerNPC = null;
 
+        foreach (QuestObjective objective in activeQuest.objectives)
+        {
+            if (objective.type == ObjectiveType.FindLiving)
+            {
+                livingTarget = LivingRegistry.GetLiving(objective.objectiveID);
             }
+
+            if (objective.type == ObjectiveType.TalkNPC)
+            {
+                ownerNPC = NPC_Registry.GetNPC(objective.objectiveID);
+            }
+        }
+
+        if (livingTarget != null && ownerNPC != null)
+        {
+            livingTarget.ReturnToOwner(ownerNPC);
         }
         completedQuestIDs.Add(activeQuest.QuestID);
         questUI.ClearObjectives(questUI.questPanel.transform.Find("QuestName").GetComponent<TMP_Text>(), questUI.questPanel.transform.Find("ObjectiveList").GetComponent<Transform>());

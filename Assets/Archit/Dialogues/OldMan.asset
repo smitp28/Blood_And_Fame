@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: OldMan
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   npcName: Old Man
+  npcID: 
   npcSprite: {fileID: 1820790034032967366, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - "Oh, hello. I didn\u2019t see you there, my eyes aren\u2019t what they used to

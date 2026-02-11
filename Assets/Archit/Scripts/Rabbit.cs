@@ -7,13 +7,11 @@ using UnityEngine.Rendering;
 public class Rabbit : MonoBehaviour, IInteractable
 {
     public Rigidbody2D rb;
-    public float moveSpeed=5f;
-    public float runTime=2f;
     public Transform ownerTrans;
     public int counter = 1;
+    public int counterStop = 6;
     public string dogID = "dog123";
     public NavMeshAgent myNavAgent;
-    Vector2 randomDir;
 
     bool IInteractable.CanInteract()
     {
@@ -26,13 +24,9 @@ public class Rabbit : MonoBehaviour, IInteractable
         myNavAgent.updateUpAxis = false;
         myNavAgent.stoppingDistance = 0.1f;
     }
-    private void Update()
-    {
-        
-    }
     void IInteractable.Interact()
     {
-        if(counter >= 6)
+        if(counter == counterStop)
         {
             if (QuestController.instance.activeQuest == null)
             {
@@ -59,9 +53,9 @@ public class Rabbit : MonoBehaviour, IInteractable
         counter++;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (counter > 6) {
+        if (counter == 6) {
             myNavAgent.SetDestination(ownerTrans.position);
             myNavAgent.stoppingDistance = 2f;
         }
@@ -81,5 +75,26 @@ public class Rabbit : MonoBehaviour, IInteractable
     void RunAway()
     {
         myNavAgent.SetDestination(RandomNavmeshLocation(10f));
+    }
+
+    public void ReturnToOwner(Transform owner)
+    {
+        counter = counterStop; // stop runaway logic
+
+        myNavAgent.stoppingDistance = 1.5f;
+        myNavAgent.SetDestination(owner.position);
+
+        // Optional: disable interaction
+        this.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        LivingRegistry.Register(dogID, this);
+    }
+
+    private void OnDisable()
+    {
+        LivingRegistry.Unregister(dogID);
     }
 }

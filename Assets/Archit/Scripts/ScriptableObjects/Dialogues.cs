@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewNPCDialogues", menuName = "NPC Dialogue")]
 public class Dialogues : ScriptableObject
 {
     public string npcName;
+    public string npcID;
     public Sprite npcSprite;
     public string[] dialogueLines;
     public float typingSpeed = 0.05f;

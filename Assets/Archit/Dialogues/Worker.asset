@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Worker
   m_EditorClassIdentifier: Assembly-CSharp::Dialogues
   npcName: Rich Man
+  npcID: 
   npcSprite: {fileID: 7744072722613937420, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - Watch it! Can't you see I'm working here?
