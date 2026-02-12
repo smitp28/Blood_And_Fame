@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
-public class Npc_Victims : MonoBehaviour
+public class Npc_Victims : MonoBehaviour, IInteractable
 {
     public Transform targetpos;
     public NavMeshAgent agent;
@@ -212,4 +212,13 @@ public class Npc_Victims : MonoBehaviour
         { return; }
     }
 
+    bool IInteractable.CanInteract()
+    {
+        return isDead;
+    }
+
+    void IInteractable.Interact()
+    {
+        
+    }
 }

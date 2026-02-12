@@ -73,16 +73,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void EnableNightSpeed()
+    public void SetNightSpeed()
     { 
          currentSpeed = nightSpeed;
          
     }
 
-    public void DisableNightSpeed()
+    public void SetNormalSpeed()
     {
        currentSpeed = moveSpeed;
-       
     }
 
     private IEnumerator ActivateInvis()
@@ -94,7 +93,6 @@ public class PlayerController : MonoBehaviour
         tmpColor.a = 1f;
         playerSprite.color = tmpColor;
     }
-
 
     public void Move(InputAction.CallbackContext context)
     {
@@ -122,6 +120,11 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Kill());
         }
+    }
+
+    public void Clean()
+    {
+       
     }
 
     public void ChangeState(PlayerStates newState) {
@@ -157,5 +160,7 @@ public class PlayerController : MonoBehaviour
             ChangeState(PlayerStates.Idle);
         }
     }
+
+
 }
-public enum PlayerStates { Idle, Walking, Attacking, Invisible};
+public enum PlayerStates { Idle, Walking, Attacking, Invisible, Cleaning};
