@@ -38,7 +38,7 @@ public class InsanityMeter : MonoBehaviour
 
         if (Current >= Max)
         { 
-            gameOverPanel.SetActive(true);
+            //gameOverPanel.SetActive(true);
         }
         if (Current <= 0)
         { 

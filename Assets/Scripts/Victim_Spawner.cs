@@ -4,8 +4,8 @@ using UnityEngine.U2D.Animation;
 public class VictimSpawner : MonoBehaviour
 {
     public GameObject victimPrefab;
-    public int maxDay = 35;
-    public int maxNight = 15;
+    public int maxDay = 70;
+    public int maxNight = 25;
     public bool isDay = true;
     public SpriteLibraryAsset[] victimSprites;
     void Update()

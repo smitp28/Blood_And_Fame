@@ -18,35 +18,35 @@ public class Enemy_Spawner : MonoBehaviour
         enemyCount = enemies.Length;
         if (PopularityMeter.instance.Current > 100f)
         {
-            if (enemyCount <= 25)
+            if (enemyCount <= 50)
             { 
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 80f)
         {
-            if (enemyCount <= 20)
+            if (enemyCount <= 40)
             {
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 60f)
         {
-            if (enemyCount <= 15)
+            if (enemyCount <= 30)
             {
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 40f)
         {
-            if (enemyCount <= 10)
+            if (enemyCount <= 20)
             {
                 SpawnEnemy();
             }
         }
         else if (PopularityMeter.instance.Current > 20f)
         {
-            if (enemyCount <= 5)
+            if (enemyCount <= 10)
             {
                 SpawnEnemy();
             }
@@ -56,7 +56,6 @@ public class Enemy_Spawner : MonoBehaviour
     private void SpawnEnemy()
     {
         GameObject victim = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
-        enemyCount++;
         if (victim.GetComponent<SpriteLibrary>() != null)
         {
             SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
