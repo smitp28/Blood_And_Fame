@@ -12,6 +12,7 @@ public class Rabbit : MonoBehaviour, IInteractable
     public int counterStop = 6;
     public string dogID = "dog123";
     public NavMeshAgent myNavAgent;
+    public Animator anim;
 
     bool IInteractable.CanInteract()
     {
@@ -20,6 +21,7 @@ public class Rabbit : MonoBehaviour, IInteractable
     private void Start()
     {
         myNavAgent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         myNavAgent.updateRotation = false;
         myNavAgent.updateUpAxis = false;
         myNavAgent.stoppingDistance = 0.1f;
@@ -58,6 +60,24 @@ public class Rabbit : MonoBehaviour, IInteractable
         if (counter == 6) {
             myNavAgent.SetDestination(ownerTrans.position);
             myNavAgent.stoppingDistance = 2f;
+        }
+        if (anim != null)
+        {
+            Vector3 vel = myNavAgent.velocity;
+            if (myNavAgent.velocity.magnitude <= 0.2f)
+            {
+                anim.SetFloat("LastDirX", vel.x);
+                anim.SetFloat("LastDirY", vel.y);
+                anim.SetBool("isIdle", true);
+                anim.SetBool("isWalking", false);
+            }
+            else
+            {
+                anim.SetFloat("DirX", vel.x);
+                anim.SetFloat("DirY", vel.y);
+                anim.SetBool("isIdle", false);
+                anim.SetBool("isWalking", true);
+            }
         }
     }
     public Vector3 RandomNavmeshLocation(float radius)
