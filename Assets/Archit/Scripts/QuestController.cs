@@ -75,7 +75,7 @@ public class QuestController : MonoBehaviour
 
         if (livingTarget != null && ownerNPC != null)
         {
-            livingTarget.ReturnToOwner(ownerNPC);
+            StartCoroutine(livingTarget.ReturnToOwner(ownerNPC));
         }
         completedQuestIDs.Add(activeQuest.QuestID);
         questUI.ClearObjectives(questUI.questPanel.transform.Find("QuestName").GetComponent<TMP_Text>(), questUI.questPanel.transform.Find("ObjectiveList").GetComponent<Transform>());

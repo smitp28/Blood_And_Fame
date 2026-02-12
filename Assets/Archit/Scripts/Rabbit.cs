@@ -97,14 +97,31 @@ public class Rabbit : MonoBehaviour, IInteractable
         myNavAgent.SetDestination(RandomNavmeshLocation(10f));
     }
 
-    public void ReturnToOwner(Transform owner)
+    public IEnumerator ReturnToOwner(Transform owner)
     {
-        counter = counterStop; // stop runaway logic
+        // 1. Setup Logic
+        counter = counterStop;
+        myNavAgent.stoppingDistance = 2f;
 
-        myNavAgent.stoppingDistance = 1.5f;
+        // 2. Start Moving (The "Go" Phase)
+        myNavAgent.isStopped = false;
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isWalking", true); // Start the walking animation
+
         myNavAgent.SetDestination(owner.position);
 
-        // Optional: disable interaction
+        // 3. The Wait (The "Travel" Phase)
+        // Wait for the path to calculate
+        yield return new WaitUntil(() => !myNavAgent.pathPending);
+        // Wait until we physically reach the owner
+        yield return new WaitUntil(() => myNavAgent.remainingDistance <= myNavAgent.stoppingDistance);
+
+        // 4. Cleanup (The "Stop" Phase)
+        myNavAgent.isStopped = true;
+        anim.SetBool("isIdle", true);
+        anim.SetBool("isWalking", false); // Stop the walking animation
+
+        // 5. Disable Interaction (Now it's safe to turn off the script)
         this.enabled = false;
     }
 
