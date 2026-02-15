@@ -37,8 +37,9 @@ public class InsanityMeter : MonoBehaviour
         Current = Mathf.Clamp(Current, 0, Max);
 
         if (Current >= Max)
-        { 
-            //gameOverPanel.SetActive(true);
+        {
+            PauseController.instance.Pause();
+            gameOverPanel.SetActive(true);
         }
         if (Current <= 0)
         { 

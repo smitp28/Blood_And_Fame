@@ -7,8 +7,9 @@ using UnityEngine;
 public class Quest : ScriptableObject
 {
     public string questID;
-    public string questName;
-    public string description;
+    public string questName = "No Quest";
+    public string description = "No Description";
+    public float popularityGain = 0.1f;
     public List<QuestObjective> objectives;
 
     private void OnValidate()

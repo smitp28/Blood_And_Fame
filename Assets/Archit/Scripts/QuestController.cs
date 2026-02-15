@@ -60,6 +60,8 @@ public class QuestController : MonoBehaviour
         Rabbit livingTarget = null;
         Transform ownerNPC = null;
 
+        PopularityMeter.instance.ApplyPopularity(activeQuest.quest.popularityGain);
+
         foreach (QuestObjective objective in activeQuest.objectives)
         {
             if (objective.type == ObjectiveType.FindLiving)

@@ -8,8 +8,9 @@ public class Rabbit : MonoBehaviour, IInteractable
 {
     public Rigidbody2D rb;
     public Transform ownerTrans;
-    public int counter = 1;
+    //public int counter = 1;
     public int counterStop = 6;
+    public int counter;
     public string dogID = "dog123";
     public NavMeshAgent myNavAgent;
     public Animator anim;
@@ -20,6 +21,7 @@ public class Rabbit : MonoBehaviour, IInteractable
     }
     private void Start()
     {
+        counter = counterStop;
         myNavAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         myNavAgent.updateRotation = false;
@@ -28,7 +30,8 @@ public class Rabbit : MonoBehaviour, IInteractable
     }
     void IInteractable.Interact()
     {
-        if(counter == counterStop)
+        counter--;
+        if(counter==0)
         {
             if (QuestController.instance.activeQuest == null)
             {
@@ -52,12 +55,11 @@ public class Rabbit : MonoBehaviour, IInteractable
             return;
         }
         RunAway();
-        counter++;
     }
 
     private void Update()
     {
-        if (counter == 6) {
+        if (counter == 0) {
             myNavAgent.SetDestination(ownerTrans.position);
             myNavAgent.stoppingDistance = 2f;
         }
