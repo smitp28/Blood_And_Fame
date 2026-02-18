@@ -17,8 +17,8 @@ MonoBehaviour:
   npcSprite: {fileID: 7744072722613937420, guid: 94ab2770b43c08044b4ff8c7d7f84b65, type: 3}
   dialogueLines:
   - Watch it! Can't you see I'm working here?
-  - "I\u2019ve lostLost my heavy iron wrench. Can't finish the shift without it.a
-    gold signet ring. It\u2019s worth more than your life\u2019s wages."
+  - "I\u2019ve lost my heavy iron wrench. Can't finish the shift without it.a gold
+    signet ring. It\u2019s worth more than your life\u2019s wages."
   - You seen it? Keep an eye out while you're passing through, yeah?
   - Right then. I'll stay here.
   - Right. Typical. Everyone's too busy to lend a hand.

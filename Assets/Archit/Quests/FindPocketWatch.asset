@@ -15,6 +15,7 @@ MonoBehaviour:
   questID: Find -253e-41f6-ae9b-788620a2aefb
   questName: Find Pocket Watch
   description: Find Pocket Watch
+  popularityGain: 0.2
   objectives:
   - objectiveID: pocketWatch123
     description: Find Pocket Watch!

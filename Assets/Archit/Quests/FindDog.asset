@@ -15,6 +15,7 @@ MonoBehaviour:
   questID: Find Dog!cbe9529b-7043-44fd-b7d2-5e7677969a09
   questName: Find Dog!
   description: 
+  popularityGain: 0.2
   objectives:
   - objectiveID: dog123
     description: Find Dog

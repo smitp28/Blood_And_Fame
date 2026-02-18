@@ -15,6 +15,7 @@ MonoBehaviour:
   questID: Find Wrench!e6ed6f4f-8d90-4280-b919-6e176ec273a5
   questName: Find Wrench!
   description: Find the Wrench
+  popularityGain: 0.3
   objectives:
   - objectiveID: wrench123
     description: Find Wrench!

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum QuestState { NotStarted, InProgress, Completed}
 public class NPC_Script : MonoBehaviour, IInteractable
 {
     public Dialogues dialogueData;
@@ -10,15 +11,16 @@ public class NPC_Script : MonoBehaviour, IInteractable
     private DialogueController dialogueUI;
     private Button closeButton;
     private bool isTyping;
+    private NPC_Status nPC_Status;
     private int dialogueIndex;
     private bool isDialogueActive;
-    private enum QuestState { NotStarted, InProgress, Completed}
-    private QuestState questState = QuestState.NotStarted;
+    public QuestState questState = QuestState.NotStarted;
     private void Start()
     {
         dialogueUI = DialogueController.instance;
         buttonSfx = DialogueController.instance.buttonClickSfx;
         closeButton = DialogueController.instance.closeButton;
+        nPC_Status = GetComponentInChildren<NPC_Status>();
     }
     public bool CanInteract()
     {
@@ -58,8 +60,8 @@ public class NPC_Script : MonoBehaviour, IInteractable
     public void StartDialogue()
     {
         SyncQuestState();
-        
-        if(questState == QuestState.NotStarted) {dialogueIndex = 0;}
+        //nPC_Status.UpdateStatusIcon(questState);
+        if (questState == QuestState.NotStarted) {dialogueIndex = 0;}
         if(questState == QuestState.InProgress) {dialogueIndex = dialogueData.questInProgressIndex;}
         if(questState == QuestState.Completed) {dialogueIndex = dialogueData.questCompletedIndex;}
 
@@ -122,6 +124,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
             {
                 closeButton.interactable = true;
             }
+            return;
         }
 
         dialogueUI.ClearChoices();
@@ -129,6 +132,7 @@ public class NPC_Script : MonoBehaviour, IInteractable
         if(dialogueData.endDialogueLines.Length > dialogueIndex && dialogueData.endDialogueLines[dialogueIndex])
         {
             EndDialogue();
+            return;
         }
 
         foreach(DialogueChoice choice in dialogueData.dialogueChoices)
@@ -163,8 +167,8 @@ public class NPC_Script : MonoBehaviour, IInteractable
     {
         if (givesQuest)
         {
-            QuestController.instance.AcceptQuest(dialogueData.quest);
-            questState = QuestState.InProgress;
+            int temp = QuestController.instance.AcceptQuest(dialogueData.quest);
+            if(temp==1) questState = QuestState.InProgress;
         }
         AudioManager.instance.PlaySoundFx(buttonSfx, transform, 1f);
         dialogueIndex = nextIndex;
@@ -197,7 +201,9 @@ public class NPC_Script : MonoBehaviour, IInteractable
 
     public void EndDialogue()
     {
+        nPC_Status.UpdateStatusIcon(questState);
         StopAllCoroutines();
+        dialogueUI.ClearChoices();
         dialogueUI.SetDialogueText("");
         dialogueUI.ShowDialogueUI(false);
         isDialogueActive = false;

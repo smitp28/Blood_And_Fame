@@ -39,19 +39,20 @@ public class QuestController : MonoBehaviour
         if (questUI != null) questUI.UpdateQuestUI();
     }
 
-    public void AcceptQuest(Quest quest)
+    public int AcceptQuest(Quest quest)
     {
-        if (quest == null) return;
+        if (quest == null) return 0;
 
         if (activeQuest != null)
         {
             string currentName = (activeQuest.quest != null) ? activeQuest.quest.questName : "Unknown Quest";
             Debug.LogWarning("Already have a quest: " + currentName);
-            return;
+            return 0;
         }
 
         activeQuest = new QuestProgress(quest);
         if (questUI != null) questUI.UpdateQuestUI();
+        return 1;
     }
 
     public void OnQuestCompleted()

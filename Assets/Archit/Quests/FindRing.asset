@@ -15,6 +15,7 @@ MonoBehaviour:
   questID: Find Ring!1d782e8d-1fa9-4cc9-9442-5b33afa769bb
   questName: Find Ring!
   description: Find the Ring
+  popularityGain: 0.1
   objectives:
   - objectiveID: ring123
     description: Find Ring!

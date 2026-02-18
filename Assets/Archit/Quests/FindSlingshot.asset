@@ -15,6 +15,7 @@ MonoBehaviour:
   questID: Find Slingshot!bd74c241-6492-4019-a368-a4a8c4a33a5d
   questName: Find Slingshot!
   description: Find the Slingshot
+  popularityGain: 0.15
   objectives:
   - objectiveID: slingshot123
     description: Find Slingshot!
