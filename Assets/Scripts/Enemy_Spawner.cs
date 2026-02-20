@@ -10,6 +10,7 @@ public class Enemy_Spawner : MonoBehaviour
     public GameObject _enemyPrefab;
     public SpriteLibraryAsset[] victimSprites;
     public GameObject PopMeter;
+    public Transform[] spawnPoints;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -55,7 +56,8 @@ public class Enemy_Spawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        GameObject victim = Instantiate(_enemyPrefab, transform.position, Quaternion.identity);
+        int randSpawn = Random.Range(0, spawnPoints.Length);
+        GameObject victim = Instantiate(_enemyPrefab, spawnPoints[randSpawn].position, Quaternion.identity);
         if (victim.GetComponent<SpriteLibrary>() != null)
         {
             SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();

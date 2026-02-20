@@ -8,6 +8,8 @@ public class VictimSpawner : MonoBehaviour
     public int maxNight = 25;
     public bool isDay = true;
     public SpriteLibraryAsset[] victimSprites;
+    public Transform[] spawnPoints;
+
     void Update()
     {
         int maxAllowed = isDay ? maxDay : maxNight;
@@ -23,7 +25,8 @@ public class VictimSpawner : MonoBehaviour
         // SPAWN missing (night → day or deaths)
         if (victims.Length < maxAllowed)
         {
-            GameObject victim = Instantiate(victimPrefab, transform.position, Quaternion.identity);
+            int randIndex = Random.Range(0, spawnPoints.Length);
+            GameObject victim = Instantiate(victimPrefab, spawnPoints[randIndex].position, Quaternion.identity);
             SpriteLibrary spriteLibrary = victim.GetComponent<SpriteLibrary>();
             int random = Random.Range(0, victimSprites.Length);
             spriteLibrary.spriteLibraryAsset = victimSprites[random];

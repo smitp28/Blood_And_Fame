@@ -6,12 +6,13 @@ public class Npc_Victims : MonoBehaviour, IInteractable
 {
     public Transform targetpos;
     public GameObject[] markers;
-    public GameObject marker;
     public NavMeshAgent agent;
     public Collider2D paparazzicoll;
+    public float minSpeed = 2.0f;
+    public float maxSpeed = 4.0f;
     public LayerMask player;
     private float cooldown = 1f;
-    private float randomnum;
+    private int randomnum;
     private Vector3 personaloffset;
     public bool isDead;
     public bool hasBeenscanned;
@@ -24,13 +25,11 @@ public class Npc_Victims : MonoBehaviour, IInteractable
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.speed = Random.Range(minSpeed, maxSpeed);
         paparazzicoll = GetComponent<Collider2D>();
         agent.stoppingDistance = 0.1f;
-        markers = new GameObject[50];
-        for (int i = 0; i < markers.Length; i++) 
-        { 
-            markers[i] = GameObject.FindWithTag("M"+(i+1)); 
-        }
+
+        markers = GameObject.FindGameObjectsWithTag("Markers");
 
         anim = GetComponent<Animator>();
         StartCoroutine(WaitAndMove());
@@ -86,16 +85,8 @@ public class Npc_Victims : MonoBehaviour, IInteractable
 
     public void PickNewMarker()
     {
-        randomnum = Random.Range(0f, 1f);
-        for (int i = 0; i < markers.Length; i++)
-        {
-            if (randomnum <= (i + 1f) / markers.Length)
-            {
-                marker = markers[i];
-                break;
-            }
-        }
-        targetpos = marker.transform;
+        randomnum = Random.Range(0, markers.Length);
+        targetpos = markers[randomnum].transform;
     }
 
     public void Death()
