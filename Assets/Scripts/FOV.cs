@@ -84,14 +84,17 @@ public class FOV : MonoBehaviour
             {
                 endPoint = hit.point;
 
-                if (hit.collider == playercoll)
+                if (hit.collider.CompareTag("Player"))
+                {
                     playervisible = true;
-
+                    Debug.Log("I can see the Player");
+                }
                 if (hit.collider.CompareTag("victims"))
                 {
                     Npc_Victims npc = hit.collider.GetComponent<Npc_Victims>();
                     if (npc != null && npc.isDead)
                     {
+                        Debug.Log("I can see the corpse");
                         corpsevisible = true;
                         corpsecoll = hit.collider;
                     }

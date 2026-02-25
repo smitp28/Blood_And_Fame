@@ -11,7 +11,11 @@ public class PauseController : MonoBehaviour
         if (instance == null) instance = this;
         else Destroy(gameObject);
     }
-
+    private void Start()
+    {
+        // Ensure every time a scene starts, the game is unpaused
+        UnPause();
+    }
     public void Pause()
     {
         Time.timeScale = 0f;
