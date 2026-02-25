@@ -99,6 +99,11 @@ public class FOV : MonoBehaviour
                         corpsecoll = hit.collider;
                     }
                 }
+                if (hit.collider.CompareTag("Corpse"))
+                {
+                   corpsevisible = true;
+                   corpsecoll = hit.collider;
+                }
             }
 
             vertices[vertexIndex] =
@@ -128,7 +133,6 @@ public class FOV : MonoBehaviour
 
         bool corpseJustbecamevisible = corpsevisible && !corpseVisiblelastframe;
 
-        // ================= FINAL DECISION =================
 
         // CASE 1: Player + corpse seen → GAME OVER
         if (playervisible && corpsevisible)

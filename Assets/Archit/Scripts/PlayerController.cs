@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public GameObject killingScreen;
     public GameObject victim;
     private bool isKilling = false;
+    public GameObject Corpseprefab;
     private void Start()
     {
         currentState = PlayerStates.Idle;
@@ -122,9 +124,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Clean()
+    public void Clean(InputAction.CallbackContext context)
     {
-       
+        Collider2D Victim = Physics2D.OverlapCircle(attackPoint.position, attackRange, victims);
+        Vector3 location = Victim.bounds.center;
+        Destroy(Victim.gameObject);
+        Instantiate(Corpseprefab, Victim.transform.position, Quaternion.identity);
     }
 
     public void ChangeState(PlayerStates newState) {
