@@ -11,6 +11,7 @@ TagManager:
   - Wallet
   - victims
   - Markers
+  - CorpseParent
   layers:
   - Default
   - TransparentFX

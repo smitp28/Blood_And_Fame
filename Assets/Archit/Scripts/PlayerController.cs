@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Diagnostics;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +10,8 @@ public class PlayerController : MonoBehaviour
     public PlayerStates currentState;
     public float invisDuration;
     private Color spriteColor;
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float daySpeed = 5f;
+    [SerializeField] private float cleanSpeed;
     [SerializeField] private float nightSpeed = 10f;
     private float currentSpeed;
     public Vector2 moveInput;
@@ -24,47 +22,50 @@ public class PlayerController : MonoBehaviour
     public float attackTime;
     public bool canMove;
     public AudioClip eatingBones;
+    public Transform playerFacingTowards;
     public GameObject killingScreen;
-    public GameObject victim;
+    private GameObject victim;
     private bool isKilling = false;
     public GameObject Corpseprefab;
+    public GameObject corpseInstance;
+    public bool isCleaning = false;
+    private bool isDay = true;
+    public static  PlayerController instance;
+
+    private void Awake()
+    {
+        if(instance == null) { instance = this; }
+        else { Destroy(gameObject); return; }
+    }
     private void Start()
     {
+        lastMoveInput = Vector2.up;
         currentState = PlayerStates.Idle;
         spriteColor = playerSprite.color;
         canMove = true;
-        currentSpeed = moveSpeed;
+        currentSpeed = daySpeed;
     }
     private void Update()
     {
-        switch (currentState)
-        {
-            case PlayerStates.Idle:
-                rb.linearVelocity = Vector2.zero;
-                canMove = true;
-                break;
-            case PlayerStates.Walking:
-                rb.linearVelocity = currentSpeed * moveInput;
-                break;
-            case PlayerStates.Attacking:
-                rb.linearVelocity = Vector2.zero;
-                canMove = false;
-                break;
-        }
-
         victim = GameObject.FindGameObjectWithTag("victims");
+        AimRotation();
     }
     private void FixedUpdate()
     {
-    if (currentState == PlayerStates.Walking)
-    {
-        rb.linearVelocity = moveInput.normalized * currentSpeed;
-    }
-    else
-    {
-        rb.linearVelocity = Vector2.zero;
-    }
-    
+        if (currentState == PlayerStates.Idle)
+        {
+            rb.linearVelocity = Vector2.zero;
+            canMove = true;
+        }
+        else if (currentState == PlayerStates.Walking)
+        {
+            rb.linearVelocity = currentSpeed * moveInput;
+        }
+        else if (currentState == PlayerStates.Attacking)
+        {
+            rb.linearVelocity = Vector2.zero;
+            canMove = false;
+        }
     }
 
     public void Invis(InputAction.CallbackContext context)
@@ -76,14 +77,25 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetNightSpeed()
-    { 
-         currentSpeed = nightSpeed;
-         
+    {
+        isDay = false;
+        if (isCleaning)
+        {
+            cleanSpeed = nightSpeed / 2;
+            currentSpeed = cleanSpeed;
+        }
+        else currentSpeed = nightSpeed;
     }
 
     public void SetNormalSpeed()
     {
-       currentSpeed = moveSpeed;
+        isDay = true;
+        if (isCleaning)
+        {
+            cleanSpeed = daySpeed / 2;
+            currentSpeed = cleanSpeed;
+        }
+        else currentSpeed = daySpeed;
     }
 
     private IEnumerator ActivateInvis()
@@ -98,24 +110,30 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (canMove == false)
-        { return; }
+        if (canMove == false) return;
+
         if (context.performed)
         {
             moveInput = context.ReadValue<Vector2>();
-            animator.SetFloat("InputX", moveInput.x);
-            animator.SetFloat("InputY", moveInput.y);
             lastMoveInput = moveInput;
+            Vector2 animInput = isCleaning ? -moveInput : moveInput;
+            animator.SetFloat("InputX", animInput.x);
+            animator.SetFloat("InputY", animInput.y);
             ChangeState(PlayerStates.Walking);
         }
-        else if (context.canceled) {
+        else if (context.canceled)
+        {
             moveInput = Vector2.zero;
-            animator.SetFloat("LastInputX", lastMoveInput.x);
-            animator.SetFloat("LastInputY", lastMoveInput.y);
+            Vector2 lastAnimInput = isCleaning ? -lastMoveInput : lastMoveInput;
+            animator.SetFloat("LastInputX", lastAnimInput.x);
+            animator.SetFloat("LastInputY", lastAnimInput.y);
             ChangeState(PlayerStates.Idle);
         }
     }
-
+    void AimRotation()
+    {
+        playerFacingTowards.up = lastMoveInput;
+    }
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed && !isKilling)
@@ -123,13 +141,24 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Kill());
         }
     }
-
     public void Clean(InputAction.CallbackContext context)
     {
         Collider2D Victim = Physics2D.OverlapCircle(attackPoint.position, attackRange, victims);
-        Vector3 location = Victim.bounds.center;
+        if (Victim == null || isCleaning || !Victim.gameObject.GetComponent<Npc_Victims>().isDead) return;
         Destroy(Victim.gameObject);
-        Instantiate(Corpseprefab, Victim.transform.position, Quaternion.identity);
+        isCleaning = true;
+        //Used variable just for keeping a track on the speeds
+        cleanSpeed = currentSpeed / 2;
+        currentSpeed = cleanSpeed;
+        corpseInstance = Instantiate(Corpseprefab, Victim.transform.position, Quaternion.identity);
+    }
+
+    public void StopCleaning()
+    {
+        Destroy(corpseInstance);
+        isCleaning = false;
+        if (isDay) currentSpeed = daySpeed;
+        else currentSpeed = nightSpeed;
     }
 
     public void ChangeState(PlayerStates newState) {
@@ -168,4 +197,4 @@ public class PlayerController : MonoBehaviour
 
 
 }
-public enum PlayerStates { Idle, Walking, Attacking, Invisible, Cleaning};
+public enum PlayerStates { Idle, Walking, Attacking, Invisible};

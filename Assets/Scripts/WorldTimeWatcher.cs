@@ -39,6 +39,4 @@ public class WorldTimeWatcher : MonoBehaviour
         public int minute;
         public UnityEvent action;
     }
-
-   
 }

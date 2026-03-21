@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
 using System.Collections.Generic;
-public class Npc_Victims : MonoBehaviour, IInteractable
+public class Npc_Victims : MonoBehaviour
 {
     public Transform targetpos;
     public GameObject[] markers;
@@ -93,15 +93,5 @@ public class Npc_Victims : MonoBehaviour, IInteractable
     {
         if (!isDead)
         { return; }
-    }
-
-    bool IInteractable.CanInteract()
-    {
-        return isDead;
-    }
-
-    void IInteractable.Interact()
-    {
-        
     }
 }

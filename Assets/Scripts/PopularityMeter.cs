@@ -9,6 +9,7 @@ public class PopularityMeter : MonoBehaviour
     public float lerpspeed = 0.1f;
     public Image popularityBar;
     public float rate;
+
    
     private void Awake()
     {
