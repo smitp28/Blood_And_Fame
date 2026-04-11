@@ -5,7 +5,9 @@ using UnityEngine;
 public class QuestController : MonoBehaviour
 {
     public List<string> completedQuestIDs = new List<string>();
+    public int totalQuests=5;
     public AudioClip questCompleted_sfx;
+    public GameObject gameWinPanel; 
     public static QuestController instance { get; private set; }
     public QuestProgress activeQuest=null; // This is declared but NOT initialized yet
     [SerializeField] private QuestUI questUI;
@@ -85,6 +87,11 @@ public class QuestController : MonoBehaviour
         AudioManager.instance.PlaySoundFx(questCompleted_sfx, transform, 1f);
         Debug.Log("Quest Finished: " + activeQuest.quest.questName);
         activeQuest = null;
+        if (completedQuestIDs.Count == totalQuests)
+        {
+            //You won the Game
+            gameWinPanel.SetActive(true);
+        }
     }
     public bool CheckBeforeObjective(int objectiveIndex)
     {
