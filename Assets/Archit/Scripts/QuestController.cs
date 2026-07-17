@@ -83,7 +83,7 @@ public class QuestController : MonoBehaviour
             StartCoroutine(livingTarget.ReturnToOwner(ownerNPC));
         }
         completedQuestIDs.Add(activeQuest.QuestID);
-        questUI.ClearObjectives(questUI.questPanel.transform.Find("QuestName").GetComponent<TMP_Text>(), questUI.questPanel.transform.Find("ObjectiveList").GetComponent<Transform>());
+        questUI.ClearObjectives();
         AudioManager.instance.PlaySoundFx(questCompleted_sfx, transform, 1f);
         Debug.Log("Quest Finished: " + activeQuest.quest.questName);
         activeQuest = null;

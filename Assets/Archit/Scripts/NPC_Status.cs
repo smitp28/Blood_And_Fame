@@ -3,6 +3,9 @@ using UnityEngine;
 public class NPC_Status : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    [SerializeField] Sprite notStartedSprite;
+    [SerializeField] Sprite inProgressSprite;
+    [SerializeField] Sprite completedSprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,13 +16,13 @@ public class NPC_Status : MonoBehaviour
     {
         switch (questState) {
             case QuestState.NotStarted:
-                spriteRenderer.color = Color.red;
+                spriteRenderer.sprite = notStartedSprite;
                 break;
             case QuestState.InProgress:
-                spriteRenderer.color = Color.yellow;
+                spriteRenderer.sprite = inProgressSprite;
                 break;
             case QuestState.Completed:
-                spriteRenderer.color = Color.green;
+                spriteRenderer.sprite = completedSprite;
                 break;
         }
     }

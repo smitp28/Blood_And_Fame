@@ -6,7 +6,8 @@ using UnityEngine;
 public class QuestUI : MonoBehaviour
 {
     public GameObject objectiveTextPrefab;
-    public GameObject questPanel;
+    public TMP_Text questNameText;
+    public Transform objectiveList;
 
     private List<QuestObjective> objectives = new();
 
@@ -18,10 +19,7 @@ public class QuestUI : MonoBehaviour
     {
         if (QuestController.instance == null) return;
 
-        TMP_Text questNameText = questPanel.transform.Find("QuestName").GetComponent<TMP_Text>();
-        Transform objectiveList = questPanel.transform.Find("ObjectiveList").GetComponent<Transform>();
-
-        ClearObjectives(questNameText, objectiveList);
+        ClearObjectives();
 
         if (QuestController.instance.activeQuest != null && QuestController.instance.activeQuest.quest != null)
         {
@@ -37,14 +35,14 @@ public class QuestUI : MonoBehaviour
         }
         else
         {
-            questNameText.text = "No active quests.";
+            questNameText.text = $"Quests {QuestController.instance.completedQuestIDs.Count}/{QuestController.instance.totalQuests}";
         }
     }
 
 
-    public void ClearObjectives(TMP_Text questName, Transform objectiveList)
+    public void ClearObjectives()
     {
-        questName.text = "No quests";
+        questNameText.text = "No quests";
         foreach (Transform child in objectiveList)
         {
             Destroy(child.gameObject);
